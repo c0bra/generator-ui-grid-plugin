@@ -1,6 +1,10 @@
 /* jshint camelcase: false */
 'use strict';
 
+var argv = require('yargs')
+    .default('port', 4000)
+    .argv;
+
 var gulp = require('gulp');
 var del = require('del');
 var runSequence = require('run-sequence');
@@ -109,7 +113,8 @@ gulp.task('js',  function () {
     .pipe($g.size({ title: 'js' }))
     .pipe(
       gulp.dest(paths.dist.js)
-    );
+    )
+    .pipe($g.connect.reload());
 });
 
 gulp.task('less', function () {
@@ -132,12 +137,14 @@ gulp.task('less', function () {
     .pipe($g.size({ title: 'css' }))
     .pipe(
       gulp.dest(paths.dist.css)
-    );
+    )
+    .pipe($g.connect.reload());
 });
 
 gulp.task('docs', function () {
   var dgeni = new Dgeni([require('./docs/config')]);
-  dgeni.generate();
+  dgeni.generate()
+    .then($g.connect.reload);
 });
 
 
@@ -149,6 +156,11 @@ gulp.task('watch', ['build', 'auto-reload-gulp'], function () {
   gulp.watch(paths.less.watch, ['less']);
 
   // Fire up connect server
+  $g.connect.server({
+    root: '.tmp/docs',
+    port: argv.port,
+    livereload: true
+  });
 });
 
 gulp.task('build', function (cb) {

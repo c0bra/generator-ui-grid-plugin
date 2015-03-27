@@ -38,6 +38,8 @@
     "gulp-ng-html2js": "^0.2.0",
     "gulp-minify-html": "^1.0.1",
     "merge-stream": "^0.1.7",
-    "gulp-order": "^1.1.1"
+    "gulp-order": "^1.1.1",
+    "gulp-connect": "^2.2.0",
+    "yargs": "^3.6.0"
   }
 }

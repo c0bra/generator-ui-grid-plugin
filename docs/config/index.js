@@ -31,6 +31,7 @@ module.exports = new Package(buildConfig.name, [
   ];
 
   templateFinder.templatePatterns = [
+    '${doc.template}',
     'common.template.html'
   ];
 })
