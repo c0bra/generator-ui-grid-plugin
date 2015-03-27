@@ -32,6 +32,12 @@
     "dgeni": "^0.4.1",
     "canonical-path": "0.0.2",
     "dgeni-packages": "^0.10.12",
-    "lodash": "^3.6.0"
+    "lodash": "^3.6.0",
+    "q": "^1.2.0",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-ng-html2js": "^0.2.0",
+    "gulp-minify-html": "^1.0.1",
+    "merge-stream": "^0.1.7",
+    "gulp-order": "^1.1.1"
   }
 }

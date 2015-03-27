@@ -5,33 +5,39 @@ var gulp = require('gulp');
 var del = require('del');
 var runSequence = require('run-sequence');
 var Dgeni = require('dgeni');
-var pkg = require('./package.json');
+var merge = require('merge-stream');
+var buildConfig = require('./config/build.config.js');
 
 // Load any extra tasks
 require('./lib/gulp');
 
+function noop() {}
+
 var paths = {
-  clean: 'dist',
-  js: ['src/js/**/*.js'],
+  clean: ['dist', '.tmp'],
+  js: ['src/js/**/*.js'], // '.tmp/templates/templates.js'],
   test: ['test/*.spec.js'],
   less: {
     main: 'src/less/main.less',
     watch: ['src/less/**/*.less']
   },
-  demo: ['src/demo/**/*.html'],
+  templates: 'src/template/**/*.html',
 
-  // Locations for temporary files to use while developing
+  // Directories for compiled, distributed files
+  dist: {
+    js: 'dist/js',
+    css: 'dist/css'
+  },
+
+  // Locations for temporary files to use while building
   tmp: {
-    demo: '.tmp/demo'
+    docs: '.tmp/docs',
+    templates: '.tmp/templates'
   }
 };
 
 // Load plugins
-var $g = require('gulp-load-plugins')({
-  rename: {
-    'gulp-minify-css': 'minifyCSS'
-  }
-});
+var $g = require('gulp-load-plugins')();
 
 // Clean
 gulp.task('clean', function (cb) {
@@ -46,18 +52,51 @@ gulp.task('gulpfile', function () {
     .pipe($g.jshint.reporter('fail'));
 });
 
-gulp.task('js', function () {
-  return gulp.src(paths.js)
+function templates() {
+  return gulp.src(paths.templates)
+    .pipe($g.cached('templates'))
+    .pipe($g.minifyHtml({
+      empty: true,
+      spare: true,
+      quotes: true
+    }))
+    .pipe($g.remember('templates'))
+    .pipe($g.ngHtml2js({
+      moduleName: buildConfig.moduleName,
+      prefix: buildConfig.moduleName
+    }))
+    .pipe($g.concat('templates.js'));
+}
+gulp.task('templates', function () {
+  return templates()
+    .pipe(
+      gulp.dest(paths.tmp.templates)
+    );
+});
+
+// TODO: need progeny() here for after templates change?
+gulp.task('js',  function () {
+  var js = gulp.src(paths.js)
     .pipe($g.cached('js'))
     .pipe($g.jshint())
     // .pipe($g.jshint.reporter('fail'))
     .pipe($g.jscs())
-    // .on('error', noop)
+    .on('error', noop)
     .pipe($g.jscsStylish.combineWithHintResults())
     .pipe($g.jshint.reporter('jshint-stylish'))
-    .pipe($g.ngAnnotate())
+    .pipe($g.ngAnnotate());
+
+  return merge(js, templates())
     .pipe($g.remember('js'))
-    .pipe($g.concat(pkg.name + '.js'))
+
+    // Re-order files so templates come last.
+    //   They will fail to find the module if they're first
+    .pipe($g.order([
+      'src/js/**/*.js',
+      'src/template/**/*.js'
+    ], { base: '.' }))
+    
+    .pipe($g.concat(buildConfig.name + '.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe($g.sourcemaps.init())
     .pipe($g.uglify({
@@ -65,40 +104,51 @@ gulp.task('js', function () {
         negate_iife: false
       }
     }))
-    .pipe($g.rename(pkg.name + '.min.js'))
+    .pipe($g.rename(buildConfig.name + '.min.js'))
     .pipe($g.sourcemaps.write('./'))
     .pipe($g.size({ title: 'js' }))
-    .pipe(gulp.dest('dist/js'));
+    .pipe(
+      gulp.dest(paths.dist.js)
+    );
 });
 
 gulp.task('less', function () {
+  // Process the less files
   return gulp.src(paths.less.main)
-    // .pipe($g.cached('less'))
-    // .pipe($g.progeny())
+    .pipe($g.cached('less'))
+    .pipe($g.progeny())
     .pipe($g.less())
-    .pipe($g.rename(pkg.name + '.css'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe($g.autoprefixer())
+    .pipe($g.rename(buildConfig.name + '.css'))
+    .pipe(
+      gulp.dest(paths.dist.css)
+    )
+
+    // Minify
     .pipe($g.sourcemaps.init())
-    .pipe($g.minifyCSS())
-    .pipe($g.rename(pkg.name + '.min.css'))
+    .pipe($g.minifyCss())
+    .pipe($g.rename(buildConfig.name + '.min.css'))
     .pipe($g.sourcemaps.write('./'))
     .pipe($g.size({ title: 'css' }))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(
+      gulp.dest(paths.dist.css)
+    );
 });
 
 gulp.task('docs', function (cb) {
-  var dgeni = new Dgeni([require('./docs/config')]);
-  dgeni.generate().then(cb);
+  (new Dgeni());
+  // var dgeni = new Dgeni([require('./docs/config')]);
+  // dgeni.generate().then(cb);
+  cb();
 });
 
 
-/* Build and watch tasks */
+/*-- Build and watch tasks --*/
 
 gulp.task('watch', ['build', 'auto-reload-gulp'], function () {
-  // gulp.watch('gulpfile.js', ['gulpfile']);
-  gulp.watch(paths.js, ['js']);
+  gulp.watch(paths.templates, ['js', 'docs']);
+  gulp.watch(paths.js, ['js', 'docs']);
   gulp.watch(paths.less.watch, ['less']);
-  gulp.watch(paths.demo, ['demo']);
 
   // Fire up connect server
 });
@@ -107,11 +157,9 @@ gulp.task('build', function (cb) {
   runSequence(
     'clean',
     'gulpfile',
-    ['less', 'js', 'demo'],
+    ['less', 'js', 'docs'],
     cb
   );
 });
 
 gulp.task('default', ['build']);
-
-// function noop() { }

@@ -1,17 +1,20 @@
 // Canonical path provides a consistent path (i.e. always forward slashes) across different OSes
 var path = require('canonical-path');
+var projectPath = path.resolve(__dirname, '../..');
+var packagePath = __dirname;
 
 var Package = require('dgeni').Package;
 
 module.exports = new Package('smeans', [
   require('dgeni-packages/ngdoc'),
-  require('dgeni-packages/examples')
+  require('dgeni-packages/nunjucks')
 ])
 
 // .factory(require('./services/deployments/default'))
 .factory(require('./services/deployments/debug'))
 
-.processor(require('./processors/index-page'))
+.processor(require('./processors/indexPage'))
+.processor(require('./processors/buildConfig'))
 
 .config(function (dgeni, log, readFilesProcessor, writeFilesProcessor) {
   dgeni.stopOnValidationError = true;
@@ -24,16 +27,13 @@ module.exports = new Package('smeans', [
     { include: 'src/**/*.js', basePath: 'src' }
   ];
 
-  writeFilesProcessor.outputFolder = 'build';
+  writeFilesProcessor.outputFolder = '.tmp/docs';
 })
 
 .config(function (templateFinder, templateEngine) {
-  templateFinder.templateFolders.unshift(path.resolve(__dirname, 'templates'));
-
-  templateEngine.config.tags = {
-    variableStart: '{$',
-    variableEnd: '$}'
-  };
+  templateFinder.templateFolders = [
+    path.resolve(packagePath, 'template'),
+  ];
 })
 
 .config(function (computePathsProcessor, computeIdsProcessor) {
@@ -43,7 +43,7 @@ module.exports = new Package('smeans', [
     getId: function(doc) { return doc.fileInfo.baseName; },
     getAliases: function(doc) { return [doc.id]; }
   });
-  
+
   // /* Paths */
   computePathsProcessor.pathTemplates.push({
     docTypes: ['indexPage'],
