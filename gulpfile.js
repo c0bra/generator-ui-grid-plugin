@@ -135,11 +135,9 @@ gulp.task('less', function () {
     );
 });
 
-gulp.task('docs', function (cb) {
-  (new Dgeni());
-  // var dgeni = new Dgeni([require('./docs/config')]);
-  // dgeni.generate().then(cb);
-  cb();
+gulp.task('docs', function () {
+  var dgeni = new Dgeni([require('./docs/config')]);
+  dgeni.generate();
 });
 
 

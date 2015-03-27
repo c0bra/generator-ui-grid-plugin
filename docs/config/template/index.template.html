@@ -1,49 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html ng-app="docsApp" ng-controller="DocsCtrl" lang="en" ng-strict-di>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="Description" content="{$ description $}">
-  <title>{$ title $}</title>
+<title ng-bind="(menu.currentSection.name || 'Material Design') + (menu.currentPage ? (' > ' + (menu.currentPage | humanizeDoc)) : '')">{$ doc.buildConfig.name $}</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/{$ doc.buildConfig.ngVersion $}/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/{$ doc.buildConfig.ngVersion $}/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/{$ doc.buildConfig.ngVersion $}/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/{$ doc.buildConfig.ngVersion $}/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/{$ doc.buildConfig.ngVersion $}/angular-messages.min.js"></script> -->
 
-  <script type="text/javascript">
-    // dynamically add base tag as well as css and javascript files.
-    // we can't add css/js the usual way, because some browsers (FF) eagerly prefetch resources
-    // before the base attribute is added, causing 404 and terribly slow loading of the docs app.
-    (function() {
-      {% for stylesheet in doc.stylesheets %}addTag('link', {rel: 'stylesheet', href: '{$ stylesheet $}', type: 'text/css'});
-      {% endfor %}
-
-      {% for script in doc.scripts %}addTag('script', {src: '{$ script $}' }, sync);
-      {% endfor %}
-
-      function addTag(name, attributes, sync) {
-        var el = document.createElement(name),
-            attrName;
-
-        for (attrName in attributes) {
-          el.setAttribute(attrName, attributes[attrName]);
-        }
-
-        sync ? document.write(outerHTML(el)) : headEl.appendChild(el);
-      }
-
-      function outerHTML(node){
-        // if IE, Chrome take the internal method otherwise build one
-        return node.outerHTML || (
-            function(n){
-                var div = document.createElement('div'), h;
-                div.appendChild(n);
-                h = div.innerHTML;
-                div = null;
-                return h;
-            })(node);
-      }
-    })();
-  </script>
+<!-- <script src="docs.js"></script>
+<script src="docs-demo-scripts.js"></script> -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+<!-- <link rel="stylesheet" href="docs.css"> -->
 </head>
 <body>
-  <h2>Test</h2>
+  <div>
+    <h2>It Works!</h2>
+  </div>
+  <script>
+    {% if buildConfig.googleAnaltics %}
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '{$ buildConfig.googleAnaltics $}', 'auto');
+      ga('send', 'pageview');
+    {% endif %}
+  </script>
+
 </body>
 </html>

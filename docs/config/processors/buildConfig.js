@@ -1,4 +1,6 @@
 var buildConfig = require('../../../config/build.config');
+
+var q = require('Q');
 var exec = require('child-proc').exec;
 
 module.exports = function buildConfigProcessor(log) {

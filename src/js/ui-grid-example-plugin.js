@@ -1,1 +1,6 @@
+/**
+ * @ngdoc module
+ * @name ui.grid.example-plugin
+ * @description Main plugin module
+ */
 angular.module('ui.grid.example-plugin', ['ui.grid']);

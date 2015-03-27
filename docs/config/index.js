@@ -1,28 +1,23 @@
 // Canonical path provides a consistent path (i.e. always forward slashes) across different OSes
 var path = require('canonical-path');
+
+var buildConfig = require('../../config/build.config');
 var projectPath = path.resolve(__dirname, '../..');
 var packagePath = __dirname;
 
 var Package = require('dgeni').Package;
 
-module.exports = new Package('smeans', [
+module.exports = new Package(buildConfig.name, [
   require('dgeni-packages/ngdoc'),
   require('dgeni-packages/nunjucks')
 ])
 
-// .factory(require('./services/deployments/default'))
-.factory(require('./services/deployments/debug'))
-
 .processor(require('./processors/indexPage'))
 .processor(require('./processors/buildConfig'))
 
-.config(function (dgeni, log, readFilesProcessor, writeFilesProcessor) {
-  dgeni.stopOnValidationError = true;
-  dgeni.stopOnProcessingError = true;
+.config(function (readFilesProcessor, writeFilesProcessor) {
+  readFilesProcessor.basePath = projectPath
 
-  log.level = 'info';
-
-  readFilesProcessor.basePath = path.resolve(__dirname,'../..');
   readFilesProcessor.sourceFiles = [
     { include: 'src/**/*.js', basePath: 'src' }
   ];
@@ -32,7 +27,11 @@ module.exports = new Package('smeans', [
 
 .config(function (templateFinder, templateEngine) {
   templateFinder.templateFolders = [
-    path.resolve(packagePath, 'template'),
+    path.resolve(packagePath, 'template')
+  ];
+
+  templateFinder.templatePatterns = [
+    'common.template.html'
   ];
 })
 
@@ -40,7 +39,7 @@ module.exports = new Package('smeans', [
   /* Ids */
   computeIdsProcessor.idTemplates.push({
     docTypes: ['indexPage'],
-    getId: function(doc) { return doc.fileInfo.baseName; },
+    getId: function(doc) { return '${fileInfo.baseName}' },
     getAliases: function(doc) { return [doc.id]; }
   });
 
@@ -59,9 +58,4 @@ module.exports = new Package('smeans', [
   });
 })
 
-.config(function (generateIndexPagesProcessor, generateExamplesProcessor, generateProtractorTestsProcessor, defaultDeployment, debugDeployment) {
-  generateIndexPagesProcessor.deployments = [defaultDeployment, debugDeployment];
-
-  generateExamplesProcessor.deployments = [defaultDeployment];
-  generateProtractorTestsProcessor.deployments = [defaultDeployment];
-});
+;
