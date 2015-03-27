@@ -1,0 +1,17 @@
+{
+  "name": "ui-grid-plugin-skeleton",
+  "version": "0.0.0",
+  "description": "Skeleton project for Angular UI-Grid plugins",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "karma": "^0.12.31",
+    "gulp-load-plugins": "^0.9.0",
+    "gulp-clean": "^0.3.1"
+  }
+}
