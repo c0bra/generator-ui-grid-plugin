@@ -1,51 +1,67 @@
 /* jshint camelcase: false */
 'use strict';
 
+/** npm dependencies */
 var argv = require('yargs')
     .default('port', 4000)
     .argv;
-
-var gulp = require('gulp');
 var del = require('del');
-var runSequence = require('run-sequence');
 var Dgeni = require('dgeni');
+var karma = require('karma').server;
 var merge = require('merge-stream');
-var buildConfig = require('./config/build.config.js');
+var runSequence = require('run-sequence');
 
-// Load any extra tasks
+/** Gulp dependencies */
+var gulp = require('gulp');
+var $g = require('gulp-load-plugins')();
+
+/** Local dependencies */
 require('./lib/gulp');
-
+var buildConfig = require('./config/build.config.js');
 function noop() {}
 
-var paths = {
-  clean: ['dist', '.tmp'],
-  js: ['src/js/**/*.js'], // '.tmp/templates/templates.js'],
-  test: ['test/*.spec.js'],
-  less: {
-    main: 'src/less/main.less',
-    watch: ['src/less/**/*.less']
-  },
-  templates: 'src/template/**/*.html',
+/** Arguments */
+var VERSION = argv.version || buildConfig.version;
 
-  // Directories for compiled, distributed files
-  dist: {
-    js: 'dist/js',
-    css: 'dist/css'
-  },
+/** Build configuration */
+var config = {
+  banner:
+    '/*!\n' +
+    ' * Angular Material Design\n' +
+    ' * https://github.com/angular/material\n' +
+    ' * @license MIT\n' +
+    ' * v' + VERSION + '\n' +
+    ' */\n',
+  paths: {
+    clean: ['dist', '.tmp'],
+    js: ['src/js/**/*.js'], // '.tmp/templates/templates.js'],
+    test: ['test/*.spec.js'],
+    less: {
+      main: 'src/less/main.less',
+      watch: ['src/less/**/*.less']
+    },
+    templates: 'src/template/**/*.html',
 
-  // Locations for temporary files to use while building
-  tmp: {
-    docs: '.tmp/docs',
-    templates: '.tmp/templates'
+    // Directories for compiled, distributed files
+    dist: {
+      js: 'dist/js',
+      css: 'dist/css'
+    },
+
+    // Locations for temporary files to use while building
+    tmp: {
+      docs: '.tmp/docs',
+      templates: '.tmp/templates'
+    }
   }
 };
 
-// Load plugins
-var $g = require('gulp-load-plugins')();
+
+/** Gulp tasks */
 
 // Clean
 gulp.task('clean', function (cb) {
-  del(paths.clean, cb);
+  del(config.paths.clean, cb);
 });
 
 // Check gulpfile with jshint
@@ -57,7 +73,7 @@ gulp.task('gulpfile', function () {
 });
 
 function templates() {
-  return gulp.src(paths.templates)
+  return gulp.src(config.paths.templates)
     .pipe($g.cached('templates'))
     .pipe($g.minifyHtml({
       empty: true,
@@ -74,13 +90,13 @@ function templates() {
 gulp.task('templates', function () {
   return templates()
     .pipe(
-      gulp.dest(paths.tmp.templates)
+      gulp.dest(config.paths.tmp.templates)
     );
 });
 
 // TODO: need progeny() here for after templates change?
 gulp.task('js',  function () {
-  var js = gulp.src(paths.js)
+  var js = gulp.src(config.paths.js)
     .pipe($g.cached('js'))
     .pipe($g.jshint())
     // .pipe($g.jshint.reporter('fail'))
@@ -112,21 +128,21 @@ gulp.task('js',  function () {
     .pipe($g.sourcemaps.write('./'))
     .pipe($g.size({ title: 'js' }))
     .pipe(
-      gulp.dest(paths.dist.js)
+      gulp.dest(config.paths.dist.js)
     )
     .pipe($g.connect.reload());
 });
 
 gulp.task('less', function () {
   // Process the less files
-  return gulp.src(paths.less.main)
+  return gulp.src(config.paths.less.main)
     .pipe($g.cached('less'))
     .pipe($g.progeny())
     .pipe($g.less())
     .pipe($g.autoprefixer())
     .pipe($g.rename(buildConfig.name + '.css'))
     .pipe(
-      gulp.dest(paths.dist.css)
+      gulp.dest(config.paths.dist.css)
     )
 
     // Minify
@@ -136,9 +152,16 @@ gulp.task('less', function () {
     .pipe($g.sourcemaps.write('./'))
     .pipe($g.size({ title: 'css' }))
     .pipe(
-      gulp.dest(paths.dist.css)
+      gulp.dest(config.paths.dist.css)
     )
     .pipe($g.connect.reload());
+});
+
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + 'config/karma.conf.js',
+    singleRun: true
+  }, done);
 });
 
 gulp.task('docs', function () {
@@ -150,10 +173,18 @@ gulp.task('docs', function () {
 
 /*-- Build and watch tasks --*/
 
-gulp.task('watch', ['build', 'auto-reload-gulp'], function () {
-  gulp.watch(paths.templates, ['js', 'docs']);
-  gulp.watch(paths.js, ['js', 'docs']);
-  gulp.watch(paths.less.watch, ['less']);
+gulp.task('watch', ['build', 'auto-reload-gulp'], function (done) {
+  gulp.watch(config.paths.templates, ['js', 'docs']);
+  gulp.watch(config.paths.js, ['js', 'docs']);
+  gulp.watch(config.paths.less.watch, ['less']);
+
+  // Start karma
+  karma.start({
+    singleRun:false,
+    autoWatch:true,
+    configFile: __dirname + '/config/karma.conf.js',
+    browsers : argv.browsers ? argv.browsers.trim().split(',') : ['PhantomJS'],
+  }, done);
 
   // Fire up connect server
   $g.connect.server({
