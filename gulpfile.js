@@ -97,7 +97,7 @@ gulp.task('templates', function () {
 // TODO: need progeny() here for after templates change?
 gulp.task('js',  function () {
   var js = gulp.src(config.paths.js)
-    .pipe($g.cached('js'))
+    // .pipe($g.cached('js'))
     .pipe($g.jshint())
     // .pipe($g.jshint.reporter('fail'))
     .pipe($g.jscs())
@@ -107,7 +107,7 @@ gulp.task('js',  function () {
     .pipe($g.ngAnnotate());
 
   return merge(js, templates())
-    .pipe($g.remember('js'))
+    // .pipe($g.remember('js'))
 
     // Re-order files so templates come last.
     //   They will fail to find the module if they're first
@@ -159,7 +159,7 @@ gulp.task('less', function () {
 
 gulp.task('test', function (done) {
   karma.start({
-    configFile: __dirname + 'config/karma.conf.js',
+    configFile: __dirname + '/config/karma.conf.js',
     singleRun: true
   }, done);
 });

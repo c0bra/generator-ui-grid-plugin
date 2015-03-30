@@ -1,7 +1,15 @@
 
+# Setup
+
+  npm install -g gulp bower
+  npm install
+  bower install
+
 # Naming
 
 To use the automatic build process you need to use a name that works as a filename, like ui-grid-plugin-blah-blah
+
+1. Change module name in tests `beforeEach`es
 
 # Development
 

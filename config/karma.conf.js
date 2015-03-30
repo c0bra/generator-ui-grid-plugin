@@ -33,15 +33,25 @@ module.exports = function(config) {
     files: [
       // Dependencies
       'bower_components/angular/angular.js',
+      'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-ui-grid/ui-grid.js',
       'src/**/*.js',
       'test/**/*.spec.js'
     ],
     // ].concat(testSrc),
 
+    preprocessors: {
+      'src/**/*.js': 'coverage'
+    },
+
     port: 9876,
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
     colors: true,
+
+    coverageReporter: {
+      type : 'html',
+      dir : '.tmp/coverage/'
+    },
 
     // Continuous Integration mode
     // enable / disable watching file and executing tests whenever any file changes
