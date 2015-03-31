@@ -12,6 +12,7 @@ module.exports = new Package(buildConfig.name, [
   require('dgeni-packages/nunjucks')
 ])
 
+// .processor(require('./processors/assignAreas'))
 .processor(require('./processors/indexPage'))
 .processor(require('./processors/buildConfig'))
 
@@ -37,14 +38,14 @@ module.exports = new Package(buildConfig.name, [
 })
 
 .config(function (computePathsProcessor, computeIdsProcessor) {
-  /* Ids */
+  // IDs
   computeIdsProcessor.idTemplates.push({
     docTypes: ['indexPage'],
     getId: function(doc) { return '${fileInfo.baseName}' },
     getAliases: function(doc) { return [doc.id]; }
   });
 
-  // /* Paths */
+  // Paths
   computePathsProcessor.pathTemplates.push({
     docTypes: ['indexPage'],
     getPath: function() {},

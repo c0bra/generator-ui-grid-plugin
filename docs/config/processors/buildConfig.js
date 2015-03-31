@@ -12,7 +12,7 @@ module.exports = function buildConfigProcessor(log) {
 
   function process(docs) {
     docs.push({
-      template: 'build-config.js',
+      template: 'build-config.template.js',
       outputPath: 'js/build-config.js',
       buildConfig: buildConfig
     });
