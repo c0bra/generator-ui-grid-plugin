@@ -3,7 +3,7 @@
 describe('Plugin', function () {
   var $rootScope, $timeout, ExamplePluginService;
 
-  beforeEach(module('ui.grid.example-plugin'));
+  beforeEach(module('ui.grid.examplePlugin'));
   beforeEach(inject(function (_$rootScope_, _$timeout_, _ExamplePluginService_) {
     $timeout = _$timeout_;
     $rootScope = _$rootScope_;

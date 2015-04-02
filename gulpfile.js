@@ -27,10 +27,11 @@ var VERSION = argv.version || buildConfig.version;
 var config = {
   banner:
     '/*!\n' +
-    ' * Angular Material Design\n' +
-    ' * https://github.com/angular/material\n' +
+    ' * ' + buildConfig.name + '\n' +
+    ' * ' + buildConfig.repository + '\n' +
     ' * @license MIT\n' +
     ' * v' + VERSION + '\n' +
+    ' * ' + (new Date()).toISOString() +
     ' */\n',
   paths: {
     clean: ['dist', '.tmp'],
@@ -41,6 +42,8 @@ var config = {
       watch: ['src/less/**/*.less']
     },
     templates: 'src/template/**/*.html',
+    docs: 'docs/assets/**/*',
+    docs_watch: 'docs/**',
 
     // Directories for compiled, distributed files
     dist: {
@@ -97,7 +100,7 @@ gulp.task('templates', function () {
 // TODO: need progeny() here for after templates change?
 gulp.task('js',  function () {
   var js = gulp.src(config.paths.js)
-    // .pipe($g.cached('js'))
+    .pipe($g.cached('js'))
     .pipe($g.jshint())
     // .pipe($g.jshint.reporter('fail'))
     .pipe($g.jscs())
@@ -107,7 +110,7 @@ gulp.task('js',  function () {
     .pipe($g.ngAnnotate());
 
   return merge(js, templates())
-    // .pipe($g.remember('js'))
+    .pipe($g.remember('js'))
 
     // Re-order files so templates come last.
     //   They will fail to find the module if they're first
@@ -165,6 +168,10 @@ gulp.task('test', function (done) {
 });
 
 gulp.task('docs', function () {
+  gulp.src(config.paths.docs, { base: 'docs/assets' })
+    .pipe(gulp.dest(config.paths.tmp.docs))
+    .pipe($g.connect.reload());
+
   var dgeni = new Dgeni([require('./docs/config')]);
   dgeni.generate()
     .then($g.connect.reload);
@@ -173,9 +180,10 @@ gulp.task('docs', function () {
 
 /*-- Build and watch tasks --*/
 
-gulp.task('watch', ['build', 'auto-reload-gulp'], function (done) {
+gulp.task('watch', ['build'], function (done) { // TODO?: 'auto-reload-gulp'
   gulp.watch(config.paths.templates, ['js', 'docs']);
   gulp.watch(config.paths.js, ['js', 'docs']);
+  gulp.watch(config.paths.docs_watch, ['docs']);
   gulp.watch(config.paths.less.watch, ['less']);
 
   // Start karma
@@ -188,7 +196,7 @@ gulp.task('watch', ['build', 'auto-reload-gulp'], function (done) {
 
   // Fire up connect server
   $g.connect.server({
-    root: '.tmp/docs',
+    root: ['.tmp/docs', '.'],
     port: argv.port,
     livereload: true
   });

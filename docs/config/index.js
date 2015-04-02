@@ -12,7 +12,12 @@ module.exports = new Package(buildConfig.name, [
   require('dgeni-packages/nunjucks')
 ])
 
-// .processor(require('./processors/assignAreas'))
+.config(function (log) {
+  log.level = 'info';
+})
+
+.processor(require('./processors/assignAreas'))
+.processor(require('./processors/pagesData'))
 .processor(require('./processors/indexPage'))
 .processor(require('./processors/buildConfig'))
 
@@ -20,43 +25,67 @@ module.exports = new Package(buildConfig.name, [
   readFilesProcessor.basePath = projectPath
 
   readFilesProcessor.sourceFiles = [
-    { include: 'src/**/*.js', basePath: 'src' }
+    { include: 'src/**/*.js', basePath: 'src' },
+    { include: 'docs/content/**/*.md', basePath: 'docs/content', fileReader: 'ngdocFileReader' }
   ];
 
   writeFilesProcessor.outputFolder = '.tmp/docs';
 })
 
 .config(function (templateFinder, templateEngine) {
-  templateFinder.templateFolders = [
-    path.resolve(packagePath, 'template')
-  ];
+  templateFinder.templateFolders.unshift(path.resolve(packagePath, 'template'));
 
-  templateFinder.templatePatterns = [
-    '${doc.template}',
-    'common.template.html'
-  ];
+  // templateFinder.templatePatterns = [
+  //   '${doc.template}',
+  //   'common.template.html'
+  // ];
 })
 
 .config(function (computePathsProcessor, computeIdsProcessor) {
-  // IDs
+  /* Index page */
   computeIdsProcessor.idTemplates.push({
     docTypes: ['indexPage'],
     getId: function(doc) { return '${fileInfo.baseName}' },
     getAliases: function(doc) { return [doc.id]; }
   });
-
-  // Paths
+  
   computePathsProcessor.pathTemplates.push({
     docTypes: ['indexPage'],
     getPath: function() {},
     outputPathTemplate: '${id}.html'
   });
 
+
   // Put jsdoc files in ./partials directory
   computePathsProcessor.pathTemplates.push({
     docTypes: ['js'],
     pathTemplate: '${id}',
     outputPathTemplate: 'partials/${path}.html'
+  });
+
+
+  /* Content files */
+  computeIdsProcessor.idTemplates.push({
+    docTypes: ['content'],
+    idTemplate: 'content-${fileInfo.relativePath.replace("/","-")}',
+    getAliases: function(doc) { return [doc.id]; }
+  });
+
+  computePathsProcessor.pathTemplates.push({
+    docTypes: ['content'],
+    getPath: function(doc) {
+      var docPath = path.dirname(doc.fileInfo.relativePath);
+      if ( doc.fileInfo.baseName !== 'index' ) {
+        docPath = path.join(docPath, doc.fileInfo.baseName);
+      }
+      return docPath;
+    },
+    getOutputPath: function(doc) {
+      return path.join(
+        'partials',
+        path.dirname(doc.fileInfo.relativePath),
+        doc.fileInfo.baseName) + '.html';
+    }
   });
 })
 

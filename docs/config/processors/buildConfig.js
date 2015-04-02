@@ -1,7 +1,9 @@
-var buildConfig = require('../../../config/build.config');
+'use strict';
 
 var q = require('Q');
 var exec = require('child-proc').exec;
+
+var buildConfig = require('../../../config/build.config');
 
 module.exports = function buildConfigProcessor(log) {
   return {
@@ -12,9 +14,9 @@ module.exports = function buildConfigProcessor(log) {
 
   function process(docs) {
     docs.push({
-      template: 'build-config.template.js',
+      template: 'constant-data.template.js',
       outputPath: 'js/build-config.js',
-      buildConfig: buildConfig
+      items: buildConfig
     });
 
     return q.all([ getSHA(), getCommitDate() ])

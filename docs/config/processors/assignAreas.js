@@ -7,15 +7,14 @@ module.exports = function assignAreasProcessor(log) {
     $runAfter: ['tags-extracted'],
     $runBefore: ['processing-docs'],
     $process: function(docs) {
-      _(docs)
-        .forEach(function (doc) {
-          if (doc.docType === 'js') {
-            doc.area = 'api';
-          }
-          else if (doc.docType === 'content') {
-            doc.area = 'tutorial';
-          }
-        });
+      docs.forEach(function (doc) {
+        if (doc.docType === 'js') {
+          doc.area = 'api';
+        }
+        else if (doc.docType === 'content') {
+          doc.area = 'tutorial';
+        }
+      });
     }
   };
 };

@@ -7,7 +7,8 @@ module.exports = {
   moduleName: 'ui.grid.plugin.skeleton',
   version: pkg.version,
   ngVersion: '1.3.15',
-  // repository: pkg.repository.url
-  //   .replace(/^git/, 'https')
-  //   .replace(/(\.git)?\/?$/, '')
+  repository: (pkg.repository && pkg.repository.url) ? pkg.repository.url
+    .replace(/^git/, 'https')
+    .replace(/(\.git)?\/?$/, '')
+    : null
 };
