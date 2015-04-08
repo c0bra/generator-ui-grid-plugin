@@ -9,7 +9,8 @@ var Package = require('dgeni').Package;
 
 module.exports = new Package(buildConfig.name, [
   require('dgeni-packages/ngdoc'),
-  require('dgeni-packages/nunjucks')
+  require('dgeni-packages/nunjucks'),
+  require('dgeni-packages/examples')
 ])
 
 .config(function (log) {
@@ -88,5 +89,15 @@ module.exports = new Package(buildConfig.name, [
     }
   });
 })
+
+.config(function(generateExamplesProcessor, generateProtractorTestsProcessor) {
+  var deployments = [
+    { name: 'debug' },
+    { name: 'default' }
+  ];
+
+  generateExamplesProcessor.deployments = deployments;
+  generateProtractorTestsProcessor.deployments = deployments;
+});
 
 ;
