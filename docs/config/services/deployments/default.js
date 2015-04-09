@@ -2,13 +2,16 @@
 
 var buildConfig = require('../../../../config/build.config');
 
+// var cdnurl = '//cdn.rawgit.com/' + repourlwhatever
+
 module.exports = function defaultDeployment() {
   return {
     name: 'default',
     examples: {
       commonFiles: {
         scripts: [
-          'js/' + buildConfig.name + '.min.js'
+          '/bower_components/angular/angular.min.js',
+          '/js/' + buildConfig.name + '.min.js'
         ],
         stylesheets: [
           
@@ -17,7 +20,8 @@ module.exports = function defaultDeployment() {
       dependencyPath: '../../../'
     },
     scripts: [
-      'js/' + buildConfig.name + '.min.js'
+      '/bower_components/angular/angular.min.js',
+      '/js/' + buildConfig.name + '.min.js'
     ],
     stylesheets: [
       

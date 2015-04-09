@@ -1,12 +1,14 @@
 'use strict';
 
+var buildConfig = require('../../../../config/build.config');
+
 module.exports = function debugDeployment() {
   return {
     name: 'debug',
     examples: {
       commonFiles: {
         scripts: [
-          
+          'js/' + buildConfig.name + '.js'
         ],
         stylesheets: [
           
@@ -15,7 +17,7 @@ module.exports = function debugDeployment() {
       dependencyPath: '../../../'
     },
     scripts: [
-      // 'js/' + buildConfig.name + '.min.js'
+      'js/' + buildConfig.name + '.js'
     ],
     stylesheets: [
       

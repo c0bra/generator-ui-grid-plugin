@@ -1,6 +1,17 @@
 (function () {
 
-var DocsApp = angular.module('DocsApp', ['ngRoute'])
+var DocsApp = angular.module('DocsApp',
+  [
+    'ngRoute',
+    'ui.bootstrap',
+    'constants',
+    'plnkr'
+  ]
+)
+
+// .config(['$locationProvider', function($locationProvider) {
+//   $locationProvider.html5Mode(true).hashPrefix('!');
+// }])
 
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider
@@ -20,6 +31,7 @@ var DocsApp = angular.module('DocsApp', ['ngRoute'])
 }])
 
 .run(['$rootScope', function ($rootScope) {
+  // Re-highlight code blocks on route change
   $rootScope.$on('$routeChangeSuccess', function () {
     $('pre code').each(function(i, block) {
       hljs.highlightBlock(block);
@@ -44,9 +56,11 @@ function DocsCtrl(PAGES) {
   vm.PAGES = PAGES;
 }
 
-PageCtrl.$inject = [];
-function PageCtrl() {
+PageCtrl.$inject = ['openPlunkr'];
+function PageCtrl(openPlunkr) {
   var vm = this;
+
+  vm.openPlunkr = openPlunkr;
 }
 
 function orderObjectBy() {

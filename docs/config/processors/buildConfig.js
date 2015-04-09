@@ -14,6 +14,7 @@ module.exports = function buildConfigProcessor(log) {
 
   function process(docs) {
     docs.push({
+      name: 'BUILDCONFIG',
       template: 'constant-data.template.js',
       outputPath: 'js/build-config.js',
       items: buildConfig
