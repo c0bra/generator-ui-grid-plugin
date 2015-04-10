@@ -54,6 +54,7 @@ var config = {
     // Locations for temporary files to use while building
     tmp: {
       docs: '.tmp/docs',
+      e2e: ['.tmp/docs/ptore2e/**/*.js', '.tmp/docs/examples/**/*.js'],
       templates: '.tmp/templates'
     }
   }
@@ -165,6 +166,25 @@ gulp.task('test', function (done) {
     configFile: __dirname + '/config/karma.conf.js',
     singleRun: true
   }, done);
+});
+
+gulp.task('webdriver_update', $g.protractor.webdriver_update);
+gulp.task('webdriver_standalone', ['webdriver_update'], $g.protractor.webdriver_standalone);
+
+gulp.task('connect', function () {
+  return $g.connect.server({
+    root: ['.tmp/docs', '.'],
+    port: 8000
+  });
+});
+
+gulp.task('protractor', ['webdriver_standalone', 'connect'], function () {
+  return gulp.src(config.paths.tmp.e2e)
+    .pipe($g.protractor.protractor({
+      configFile: 'config/protractor.conf.js',
+      args: ['--baseUrl', 'http://127.0.0.1:8000']
+    }))
+    .on('error', function(e) { throw e });
 });
 
 gulp.task('docs', function () {

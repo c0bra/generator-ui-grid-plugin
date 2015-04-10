@@ -34,7 +34,7 @@
     <section class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#/">{$ doc.buildConfig.name $}</a>
+          <a class="navbar-brand" href="#/">{$ doc.buildConfig.readableName $}</a>
         </div>
       </div>
     </section>
@@ -42,18 +42,19 @@
 
   <section role="main" class="container">
     <div class="row">
-      <div class="sidebar col-md-4">
+      <div class="sidebar col-md-4" ng-init="filteredDocs = {}">
         <input type="text" class="form-control" placeholder="Search..." ng-model="docFilter">
 
         <br>
 
         <div ng-repeat="area in vm.PAGES | orderObjectBy:'name':true">
-          <div class="list-group">
+          <div class="list-group" ng-show="filteredDocs[area.name].length">
             <div class="list-group-item"><strong>{{ area.name }}</strong></div>
 
             <a class="list-group-item doc-link"
-              ng-repeat="doc in area.pages | filter:docFilter"
-              ng-href="#/doc/{{ doc.path }}">
+              ng-repeat="doc in filteredDocs[area.name] = (area.pages | filter:docFilter)"
+              ng-href="#/doc/{{ doc.path }}"
+              ng-class="vm.linkClass(doc)">
               {{ doc.name }}
             </a>
           </div>

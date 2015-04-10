@@ -49,11 +49,22 @@ var DocsApp = angular.module('DocsApp',
 })
 ;
 
-DocsCtrl.$inject = ['PAGES'];
-function DocsCtrl(PAGES) {
+DocsCtrl.$inject = ['$route', 'PAGES'];
+function DocsCtrl($route, PAGES) {
   var vm = this;
 
   vm.PAGES = PAGES;
+  vm.linkClass = linkClass;
+
+  ////////////
+
+  function linkClass(doc) {
+    if (!$route.current) { return; }
+
+    var path = doc.path.replace(/\.\//, '');
+    
+    if ($route.current.params.path === path) { return 'active'; }
+  };
 }
 
 PageCtrl.$inject = ['openPlunkr'];

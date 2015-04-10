@@ -11,7 +11,8 @@ module.exports = function defaultDeployment() {
       commonFiles: {
         scripts: [
           '/bower_components/angular/angular.min.js',
-          '/js/' + buildConfig.name + '.min.js'
+          '/bower_components/angular-ui-grid/ui-grid.min.js',
+          '/dist/js/' + buildConfig.name + '.min.js',
         ],
         stylesheets: [
           
@@ -21,7 +22,8 @@ module.exports = function defaultDeployment() {
     },
     scripts: [
       '/bower_components/angular/angular.min.js',
-      '/js/' + buildConfig.name + '.min.js'
+      '/bower_components/angular-ui-grid/ui-grid.min.js',
+      '/dist/js/' + buildConfig.name + '.min.js'
     ],
     stylesheets: [
       

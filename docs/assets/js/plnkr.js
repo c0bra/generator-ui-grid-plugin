@@ -25,7 +25,7 @@ angular.module('plnkr', ['constants'])
 .factory('openPlunkr', ['formPostData', '$http', '$q', 'BUILDCONFIG', function(formPostData, $http, $q, BUILDCONFIG) {
   return function(exampleFolder) {
 
-    var exampleName = BUILDCONFIG.name + ' Example';
+    var exampleName = BUILDCONFIG.readableName + ' Example';
 
     // Load the manifest for the example
     $http.get(exampleFolder + '/manifest.json')

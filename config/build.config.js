@@ -5,6 +5,7 @@ var fs = require('fs');
 module.exports = {
   name: pkg.name,
   moduleName: 'ui.grid.plugin.skeleton',
+  readableName: 'UI-Grid Plugin Skeleton',
   version: pkg.version,
   ngVersion: '1.3.15',
   repository: (pkg.repository && pkg.repository.url) ? pkg.repository.url

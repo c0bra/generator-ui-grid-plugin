@@ -47,6 +47,8 @@
     "merge-stream": "^0.1.7",
     "q": "^1.2.0",
     "run-sequence": "^1.0.2",
-    "yargs": "^3.6.0"
+    "yargs": "^3.6.0",
+    "gulp-protractor": "^1.0.0",
+    "protractor": "^2.0.0"
   }
 }

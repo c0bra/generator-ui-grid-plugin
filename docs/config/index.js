@@ -48,7 +48,7 @@ module.exports = new Package(buildConfig.name, [
 .config(function (computePathsProcessor, computeIdsProcessor) {
   /* Index page */
   computeIdsProcessor.idTemplates.push({
-    docTypes: ['indexPage'],
+    docTypes: ['indexPage', 'e2e-test'],
     getId: function(doc) { return '${fileInfo.baseName}' },
     getAliases: function(doc) { return [doc.id]; }
   });
@@ -91,6 +91,13 @@ module.exports = new Package(buildConfig.name, [
         doc.fileInfo.baseName) + '.html';
     }
   });
+
+  // Examples' protractor tests
+  computePathsProcessor.pathTemplates.push({
+    docTypes: ['e2e-test'],
+    getPath: function() {},
+    outputPathTemplate: 'ptore2e/${example.id}/${deployment.name}_test.js'
+  });
 })
 
 .config(function(generateExamplesProcessor, generateProtractorTestsProcessor, defaultDeployment, debugDeployment) {
@@ -101,6 +108,8 @@ module.exports = new Package(buildConfig.name, [
 
   generateExamplesProcessor.deployments = deployments;
   generateProtractorTestsProcessor.deployments = deployments;
-});
+
+  // generateProtractorTestsProcessor.
+})
 
 ;

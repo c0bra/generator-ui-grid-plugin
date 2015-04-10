@@ -39,9 +39,16 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
  * @module ui.grid.examplePlugin
  * @description test
  */
-.directive('exampleDirective', function() {
-  return function ($scope, $elm, $attrs) {
-
+.directive('examplePluginDirective', function() {
+  return {
+    replace: true,
+    transclude: true,
+    template: '<div><strong ng-transclude></strong></div>',
+    link: function ($scope, $elm, $attrs) {
+      $elm.on('click', function () {
+        $elm.toggleClass('toggled');
+      });
+    }
   };
 });
 
