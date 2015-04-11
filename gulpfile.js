@@ -259,8 +259,12 @@ gulp.task('build', function (cb) {
 });
 
 gulp.task('deploy', ['build'], function () {
-  return gulp.src(['dist/**', '.tmp/docs/**'])
+  return merge(
+    gulp.src('dist/**', { base: 'dist' }),
+    gulps.src('.tmp/docs/**', { base: '.tmp/docs' })
+  )
     .pipe($g.ghPages({
+      cacheDir: '.tmp/deploy',
       push: false
     }));
 });
