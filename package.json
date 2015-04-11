@@ -2,6 +2,7 @@
   "name": "ui-grid-plugin-skeleton",
   "version": "0.0.0",
   "description": "Skeleton project for Angular UI-Grid plugins",
+  "repository": "https://github.com/c0bra/ui-grid-plugin-skeleton.git",
   "scripts": {
     "test": "gulp test"
   },
@@ -49,6 +50,7 @@
     "run-sequence": "^1.0.2",
     "yargs": "^3.6.0",
     "gulp-protractor": "^1.0.0",
-    "protractor": "^2.0.0"
+    "protractor": "^2.0.0",
+    "gulp-header": "~1.2.2"
   }
 }

@@ -102,7 +102,7 @@ module.exports = new Package(buildConfig.name, [
 
 .config(function(generateExamplesProcessor, generateProtractorTestsProcessor, defaultDeployment, debugDeployment) {
   var deployments = [
-    defaultDeployment,
+    // defaultDeployment,
     debugDeployment
   ];
 

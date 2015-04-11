@@ -25,10 +25,8 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
      * @returns {Promise} Promise that is resolved with the input uppercased.
      * @description
      */
-    delayUppercase: function delayUppercase(input) {
-      return $timeout(function () {
-        return input.toUpperCase();
-      }, 200);
+    uppercase: function delayUppercase(input) {
+      return input.toString().toUpperCase();
     }
   };
 })

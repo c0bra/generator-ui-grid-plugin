@@ -1,9 +1,11 @@
 'use strict';
 
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 50000, // 11000,
 
   baseUrl: 'http://localhost:8000/',
+
+  rootElement: '[ng-app]',
 
   framework: 'jasmine',
 
