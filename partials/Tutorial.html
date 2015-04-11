@@ -1,0 +1,63 @@
+<div class="doc-content">
+  
+
+  <h1 id="ui-grid-plugin-skeleton">UI-Grid Plugin Skeleton</h1>
+<p>This module is a skeleton for you to use to create your own UI-Grid plugins, complete with unit tests, automatic documentation generation, and a build process.</p>
+<p><br>
+<br></p>
+<p>
+
+<div>
+  <a ng-click="vm.openPlunkr('examples/example-example-name', $event)" class="btn btn-primary pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path=""
+      name="example-name"
+      module="app">
+
+    <tabset>
+    
+      <tab heading="index.html">
+        <div class="runnable-example-file" 
+          name="index.html"
+          type="html"
+          language="html">
+          <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#13;&#10;  Custom directive output below:&#13;&#10;  &lt;br&gt;&#13;&#10;  &lt;br&gt;&#13;&#10;  &lt;example-plugin-directive class=&quot;test-directive&quot;&gt;Test output&lt;/example-plugin-directive&gt;&#13;&#10;&lt;/div&gt;&#13;</code></pre>
+        </div>
+      </tab>
+    
+      <tab heading="app.js">
+        <div class="runnable-example-file" 
+          name="app.js"
+          language="js"
+          type="js">
+          <pre><code>angular.module(&#39;app&#39;, [])&#13;&#10;&#10;.controller(&#39;MainCtrl&#39;, function ($scope) {&#13;&#10;  $scope.out = &#39;Hello World!&#39;;&#13;&#10;&#10;  //$scope.out = ExamplePluginService.uppercase($scope.out);&#13;&#10;});&#13;</code></pre>
+        </div>
+      </tab>
+    
+      <tab heading="protractor.js">
+        <div class="runnable-example-file" 
+          name="protractor.js"
+          type="protractor"
+          language="js">
+          <pre><code>describe(&#39;Plugin directive&#39;, function () {&#13;&#10;  it(&#39;works&#39;, function() {&#13;&#10;    expect(true).toBe(true);&#13;&#10;  });&#13;&#10;});&#13;</code></pre>
+        </div>
+      </tab>
+    
+    </tabset>
+
+    <iframe class="runnable-example-frame" src="" name="example-example-name"></iframe>
+  </div>
+</div>
+
+</p>
+
+
+  
+
+  <!-- 
+
+   -->
+</div>
