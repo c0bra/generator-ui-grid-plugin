@@ -261,7 +261,7 @@ gulp.task('build', function (cb) {
 gulp.task('deploy', ['build'], function () {
   return merge(
     gulp.src('dist/**', { base: 'dist' }),
-    gulps.src('.tmp/docs/**', { base: '.tmp/docs' })
+    gulp.src('.tmp/docs/**', { base: '.tmp/docs' })
   )
     .pipe($g.ghPages({
       cacheDir: '.tmp/deploy',
