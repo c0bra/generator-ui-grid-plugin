@@ -14,6 +14,6 @@ angular.module('constants')
   "version": "0.0.0",
   "ngVersion": "1.3.15",
   "repository": null,
-  "date": "2015-04-11 17:23:34 -0500",
-  "commit": "a46eea7d510f6482749ae6a5eeb6383205be4aa5"
+  "commit": "a46eea7d510f6482749ae6a5eeb6383205be4aa5",
+  "date": "2015-04-11 17:23:34 -0500"
 });
