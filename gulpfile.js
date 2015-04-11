@@ -260,12 +260,12 @@ gulp.task('build', function (cb) {
 
 gulp.task('deploy', ['build'], function () {
   return merge(
-    gulp.src('dist/**', { base: 'dist' }),
-    gulp.src('.tmp/docs/**', { base: '.tmp/docs' })
+    gulp.src('dist/**', { base: '.' }),
+    gulp.src('.tmp/docs/**', { base: '.tmp/docs' }),
+    gulp.src('bower_components/**', { base: '.' })
   )
     .pipe($g.ghPages({
-      cacheDir: '.tmp/deploy',
-      push: false
+      cacheDir: '.tmp/deploy'
     }));
 });
 
