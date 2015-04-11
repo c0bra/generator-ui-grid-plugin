@@ -258,4 +258,11 @@ gulp.task('build', function (cb) {
   );
 });
 
+gulp.task('deploy', ['build', 'docs'], function () {
+  gulp.src(['dist/**', '.tmp/docs/**'])
+    .pipe($g.ghPages({
+      push: false
+    }));
+});
+
 gulp.task('default', ['build']);

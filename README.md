@@ -19,3 +19,7 @@ Runns a connect server on port 4000
 
   # Or your own port:
   gulp watch --port 3000
+
+## Protractor
+
+**Note:** Protractor tests do not work, currently. They throw a "window is not defined" error, which isn't documented well anywhere that I can find.
