@@ -1,6 +1,8 @@
 
 # UI-Grid Plugin Skeleton
 
+[TODO: badges]
+
 This repo is a starter template for [UI-Grid](http://ui-grid.info) plugins.
 
 # What You Get
@@ -40,6 +42,11 @@ Update origin git remote url
 
 There is a single Tutorial file in `docs/content`. Change its contents to suit your plugin as a landing page.
 
+[TODO: Add notes on where dgeni templates are and updating them (variables, etc)]
+
+## Set up Bower and Travis
+
+[TODO]
 
 # Development
 

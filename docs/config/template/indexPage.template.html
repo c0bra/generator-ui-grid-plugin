@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="DocsApp" ng-controller="DocsCtrl as vm" lang="en" ng-strict-di>
+<html ng-app="DocsApp" ng-controller="DocsCtrl as vm" lang="en" ng-strict-di ng-cloak>
 <head>
 <title>{$ doc.buildConfig.name $}</title>
 <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
 
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/docs.css">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
@@ -32,9 +33,18 @@
 
   <header>
     <section class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
+      <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#/">{$ doc.buildConfig.readableName $}</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="{$ doc.buildConfig.repository $}" class="github-link">
+              <i class="fa fa-2x fa-github"></i>
+              GitHub
+            </a>
+          <li>
         </div>
       </div>
     </section>

@@ -2,7 +2,10 @@
   "name": "ui-grid-plugin-skeleton",
   "version": "0.0.0",
   "description": "Skeleton project for Angular UI-Grid plugins",
-  "repository": "https://github.com/c0bra/ui-grid-plugin-skeleton.git",
+  "repository": {
+    "type" : "git",
+    "url": "https://github.com/c0bra/ui-grid-plugin-skeleton.git"
+  },
   "scripts": {
     "test": "gulp test"
   },

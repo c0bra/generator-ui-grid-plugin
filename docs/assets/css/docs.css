@@ -3,6 +3,11 @@ body {
   padding-top: 60px;
 }
 
+/* Navbar */
+.github-link i {
+  vertical-align: middle;
+}
+
 /* Reset background on code blocks so it matches what Bootstrap puts out */
 .hljs {
   background: inherit !important;
