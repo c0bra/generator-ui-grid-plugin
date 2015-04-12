@@ -4,6 +4,7 @@
 /** npm dependencies */
 var argv = require('yargs')
     .default('port', 4000)
+    .default('tag', null)
     .argv;
 var child_process = require('child_process');
 var del = require('del');
@@ -258,15 +259,37 @@ gulp.task('build', function (cb) {
   );
 });
 
-gulp.task('deploy', ['build'], function () {
-  return merge(
+gulp.task('pre-publish', ['build'], function (cb) {  
+  var pub = merge(
     gulp.src('dist/**', { base: '.' }),
     gulp.src('.tmp/docs/**', { base: '.tmp/docs' }),
     gulp.src('bower_components/**', { base: '.' })
   )
-    .pipe($g.ghPages({
-      cacheDir: '.tmp/deploy'
-    }));
+    .pipe(gulp.dest('.tmp/publish'));
+
+  var bower = gulp.src('bower.json')
+    .pipe($g.jsonTransform(function(data) {
+      return {
+        name: data.name,
+        version: data.version,
+        authors: data.authors,
+        description: data.description,
+        keywords: data.keywords,
+        license: data.license,
+        dependencies: data.dependencies
+      };
+    }, 2))
+    .pipe(gulp.dest('.tmp/publish'));
+
+  return merge(pub, bower);
+});
+
+gulp.task('publish', ['pre-publish'], function (cb) {
+  var ghpages = require('gh-pages');
+
+  ghpages.publish(path.join(__dirname, '.tmp/publish'), {
+    tag: argv.tag ? argv.tag : null
+  }, cb);
 });
 
 gulp.task('default', ['build']);
