@@ -1,0 +1,25 @@
+<div class="doc-content">
+  {% block content %}
+
+  {$ doc.description | marked $}
+
+  {% block dependencies %}
+  {%- if doc.requires %}
+  <h2 id="dependencies">Dependencies</h2>
+  <ul>
+    {% for require in doc.requires %}<li>{$ require | link $}</li>{% endfor %}
+  </ul>
+  {% endif -%}
+  {% endblock %}
+
+  <!-- {% block examples %}
+  {%- if doc.examples %}
+  <h2 id="example">Example</h2>
+  {%- for example in doc.examples -%}
+    {$ example | marked $}
+  {%- endfor -%}
+  {% endif -%}  
+  {% endblock %}
+
+  {% endblock %} -->
+</div>
