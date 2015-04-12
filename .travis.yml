@@ -8,7 +8,7 @@ branches:
   - master
 
 before_script:
-  - npm install --quiet -g gulp karma
+  - npm install --quiet -g gulp karma bower
   - npm install
   - bower install
 
