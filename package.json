@@ -6,7 +6,7 @@
   "scripts": {
     "test": "gulp test"
   },
-  "author": "BRian Hann",
+  "author": "Brian Hann",
   "license": "MIT",
   "devDependencies": {
     "canonical-path": "0.0.2",
