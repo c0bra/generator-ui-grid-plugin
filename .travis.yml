@@ -1,0 +1,19 @@
+language: node_js
+
+node_js:
+  - '0.12'
+
+branches:
+  only:
+  - master
+
+before_script:
+  - npm install --quiet -g gulp karma
+  - npm install
+  - bower install
+
+script:
+  - ./travis_build.sh
+
+after_success:
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && gulp publish

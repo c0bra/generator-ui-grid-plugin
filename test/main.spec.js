@@ -11,15 +11,10 @@ describe('Plugin', function () {
   }));
 
   describe('delayedUppercase', function () {
-    it('Returns a promise with input uppercased ', function (done) {
-      var p = ExamplePluginService.delayUppercase('test');
-
-      p.then(function(output) {
-        expect(output).toEqual('TEST');
-        done();
-      });
+    it('Returns a promise with input uppercased ', function () {
+      var u = ExamplePluginService.uppercase('test');
       
-      $timeout.flush();
+      expect(u).toEqual('TEST');
     });
   });
 });
