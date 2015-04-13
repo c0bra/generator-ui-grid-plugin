@@ -17,7 +17,6 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - chmod +x ./travis_build.sh
   - npm install --quiet -g gulp karma bower
-  - npm install
   - bower install
 
 script:

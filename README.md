@@ -71,7 +71,18 @@ The `publish` task takes automatically generated docs and dist files and push th
 
 ## Travis
 
-1. Update bower cred env vars
+1. Encrypt your github credentials: http://docs.travis-ci.com/user/environment-variables/#Secure-Variables
+
+    gem install travis
+    travis encrypt GITHUB_NAME=yourusername
+    travis encrypt GITHUB_PASS=yourpassword
+
+Add the output to your env vars, it will look like this:
+
+    env:
+      global:
+      - secure: "fa5fArbwOxcpbv1uLZnIdjfkBEw/k97qrwya+EoFPSwpnoyS4tv/J27fgDdQxp2S83ge7OafHccJkgPDZYrCgOqqbSiVFOaSHnX8eyWkC+k3MqAY5s2rfjdFE/NS3sA3yRV+AEw8xDJ4xFZhJXmUmb1lpuK3+VYAn5ElEtKLGLU="
+      - secure: "EKFllxWbaNO41LKRUaaPG+wn+37OLGJ9yAUx4F4agnnM8c8OALzGE34xbzKn5qoza/JvmobrVUhzKmp0/HiuwKjOX0NfJAKp2mIeMy5G64dhaEGFPeeviIzOCJ2DTR/IIEhACidQjquFy+WExtDCbt8Xzgq+38lcKytuE4GEIZM="
 
 ## Bower
 

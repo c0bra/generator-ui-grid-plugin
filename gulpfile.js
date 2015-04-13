@@ -287,13 +287,13 @@ gulp.task('pre-publish', ['build'], function (cb) {
 gulp.task('publish', ['pre-publish'], function (cb) {
   var ghpages = require('gh-pages');
 
-  var opt = {
+  var opts = {
     tag: argv.tag ? argv.tag : null,
   };
 
   // Use encrypted environment variables to set the username and pass for pushing gh-pages
   if (process.env.TRAVIS) {
-    opt.repo = 'https://' + process.env.GITHUB_NAME + ':' + process.env.GITHUB_PASS + '@' + buildConfig.pkg.repository.url);
+    opts.repo = 'https://' + process.env.GITHUB_NAME + ':' + process.env.GITHUB_PASS + '@' + buildConfig.pkg.repository.url;
   }
 
   ghpages.publish(path.join(__dirname, '.tmp/publish'), opts, cb);
