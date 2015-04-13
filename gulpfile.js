@@ -292,7 +292,7 @@ gulp.task('publish', ['pre-publish'], function (cb) {
     tag: argv.tag ? argv.tag : null,
     user: {
       name: 'Brian Hann',
-      email: 'c0bra@users.noreply.github.com'
+      email: 'emailc0bra@gmail.com'
     }
   };
 
