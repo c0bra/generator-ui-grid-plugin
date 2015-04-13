@@ -5,8 +5,8 @@ node_js:
 
 env:
   global:
-  - secure: "fa5fArbwOxcpbv1uLZnIdjfkBEw/k97qrwya+EoFPSwpnoyS4tv/J27fgDdQxp2S83ge7OafHccJkgPDZYrCgOqqbSiVFOaSHnX8eyWkC+k3MqAY5s2rfjdFE/NS3sA3yRV+AEw8xDJ4xFZhJXmUmb1lpuK3+VYAn5ElEtKLGLU="
-  - secure: "EKFllxWbaNO41LKRUaaPG+wn+37OLGJ9yAUx4F4agnnM8c8OALzGE34xbzKn5qoza/JvmobrVUhzKmp0/HiuwKjOX0NfJAKp2mIeMy5G64dhaEGFPeeviIzOCJ2DTR/IIEhACidQjquFy+WExtDCbt8Xzgq+38lcKytuE4GEIZM="
+    - secure: "fa5fArbwOxcpbv1uLZnIdjfkBEw/k97qrwya+EoFPSwpnoyS4tv/J27fgDdQxp2S83ge7OafHccJkgPDZYrCgOqqbSiVFOaSHnX8eyWkC+k3MqAY5s2rfjdFE/NS3sA3yRV+AEw8xDJ4xFZhJXmUmb1lpuK3+VYAn5ElEtKLGLU="
+    - secure: "EKFllxWbaNO41LKRUaaPG+wn+37OLGJ9yAUx4F4agnnM8c8OALzGE34xbzKn5qoza/JvmobrVUhzKmp0/HiuwKjOX0NfJAKp2mIeMy5G64dhaEGFPeeviIzOCJ2DTR/IIEhACidQjquFy+WExtDCbt8Xzgq+38lcKytuE4GEIZM="
 
 branches:
   only:
