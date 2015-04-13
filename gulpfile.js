@@ -296,6 +296,7 @@ gulp.task('publish', ['pre-publish'], function (cb) {
   if (process.env.TRAVIS) {
     var parsed = url.parse(buildConfig.pkg.repository.url);
     parsed.auth = process.env.GITHUB_NAME + ':' + process.env.GITHUB_PASS;
+    $g.util.log('Pushing to: ', url.format(parsed));
     opts.repo = url.format(parsed);
   }
 
