@@ -3,6 +3,7 @@ var bower = require('../bower.json');
 var fs = require('fs');
 
 module.exports = {
+  pkg: pkg,
   name: pkg.name,
   moduleName: 'ui.grid.plugin.skeleton',
   readableName: 'UI-Grid Plugin Skeleton',
