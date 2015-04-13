@@ -31,7 +31,7 @@ var config = {
   banner: ['/*!',
     ' * ' + buildConfig.name,
     ' * ' + buildConfig.repository,
-    ' * @license MIT',
+    ' * @license ' + buildConfig.pkg.license,
     ' * v' + VERSION,
     ' * ' + (new Date()).toISOString(),
     ' */',
@@ -123,7 +123,7 @@ gulp.task('js',  function () {
       'src/js/**/*.js',
       'src/template/**/*.js'
     ], { base: '.' }))
-    
+
     .pipe($g.concat(buildConfig.name + '.js'))
     .pipe($g.header(config.banner))
     .pipe(gulp.dest('dist/js'))
@@ -259,7 +259,7 @@ gulp.task('build', function (cb) {
   );
 });
 
-gulp.task('pre-publish', ['build'], function (cb) {  
+gulp.task('pre-publish', ['build'], function (cb) {
   var pub = merge(
     gulp.src('dist/**', { base: '.' }),
     gulp.src('.tmp/docs/**', { base: '.tmp/docs' }),
@@ -287,9 +287,16 @@ gulp.task('pre-publish', ['build'], function (cb) {
 gulp.task('publish', ['pre-publish'], function (cb) {
   var ghpages = require('gh-pages');
 
-  ghpages.publish(path.join(__dirname, '.tmp/publish'), {
-    tag: argv.tag ? argv.tag : null
-  }, cb);
+  var opt = {
+    tag: argv.tag ? argv.tag : null,
+  };
+
+  // Use encrypted environment variables to set the username and pass for pushing gh-pages
+  if (process.env.TRAVIS) {
+    opt.repo = 'https://' + process.env.GITHUB_NAME + ':' + process.env.GITHUB_PASS + '@' + buildConfig.pkg.repository.url);
+  }
+
+  ghpages.publish(path.join(__dirname, '.tmp/publish'), opts, cb);
 });
 
 gulp.task('default', ['build']);

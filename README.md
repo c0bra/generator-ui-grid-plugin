@@ -2,7 +2,7 @@
 # UI-Grid Plugin Skeleton
 
 [TODO: badges]
-[![devDependencies](https://img.shields.io/david/dev/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://david-dm.org/c0bra/ui-grid-plugin-skeleton#info=devDependencies) [![Coveralls](https://img.shields.io/coveralls/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://coveralls.io/r/c0bra/ui-grid-plugin-skeleton)
+[![Travis](https://img.shields.io/travis/c0bra/ui-grid-plugin-skeleton.svg)](https://travis-ci.org/c0bra/ui-grid-plugin-skeleton) [![devDependencies](https://img.shields.io/david/dev/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://david-dm.org/c0bra/ui-grid-plugin-skeleton#info=devDependencies) [![Coveralls](https://img.shields.io/coveralls/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://coveralls.io/r/c0bra/ui-grid-plugin-skeleton)
 
 This repo is a starter template for [UI-Grid](http://ui-grid.info) plugins.
 
@@ -21,17 +21,17 @@ This repo is a starter template for [UI-Grid](http://ui-grid.info) plugins.
 
 Clone the project locally
 
-  git clone https://github.com/c0bra/ui-grid-plugin-skeleton.git my-plugin
+    git clone https://github.com/c0bra/ui-grid-plugin-skeleton.git my-plugin
 
 Update origin git remote url
 
-  git remote set-url origin https://github.com/your-username/your-plugin.git
+    git remote set-url origin https://github.com/your-username/your-plugin.git
 
 ## Install Dependencies
 
-  npm install -g gulp bower
-  npm install
-  bower install
+    npm install -g gulp bower
+    npm install
+    bower install
 
 ## Configuration
 
@@ -53,10 +53,10 @@ There is a single Tutorial file in `docs/content`. Change its contents to suit y
 
 Automatically rebuilds js, css, and docs files. Runs a connect server on port 4000
 
-  gulp watch
+    gulp watch
 
-  # Or your own port:
-  gulp watch --port 3000
+    # Or your own port:
+    gulp watch --port 3000
 
 ## Protractor
 
@@ -67,8 +67,11 @@ Automatically rebuilds js, css, and docs files. Runs a connect server on port 40
 
 The `publish` task takes automatically generated docs and dist files and push them to the gh-pages branch.
 
-  gulp publish --tag v0.0.1
+    gulp publish --tag v0.0.1
 
+## Travis
+
+1. Update bower cred env vars
 
 ## Bower
 
