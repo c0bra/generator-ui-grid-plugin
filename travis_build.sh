@@ -16,7 +16,7 @@ else
   # Send coverage data to coveralls.io
   if [ $TRAVIS_BRANCH == "master" ]
   then
-    cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true
+    cat ./.tmp/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true
   fi
 
   gulp

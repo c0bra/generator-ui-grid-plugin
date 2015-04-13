@@ -44,14 +44,15 @@ module.exports = function(config) {
       'src/**/*.js': 'coverage'
     },
 
+    coverageReporter: {
+      type: 'lcov',
+      dir:  '.tmp/coverage',
+      subdir: '.'
+    },
+
     port: 9876,
     reporters: ['progress', 'coverage'],
     colors: true,
-
-    coverageReporter: {
-      type : 'html',
-      dir : '.tmp/coverage/'
-    },
 
     // Continuous Integration mode
     // enable / disable watching file and executing tests whenever any file changes
