@@ -13,6 +13,7 @@ var karma = require('karma').server;
 var merge = require('merge-stream');
 var path = require('path');
 var runSequence = require('run-sequence');
+var url = require('url');
 
 /** Gulp dependencies */
 var gulp = require('gulp');
@@ -293,7 +294,9 @@ gulp.task('publish', ['pre-publish'], function (cb) {
 
   // Use encrypted environment variables to set the username and pass for pushing gh-pages
   if (process.env.TRAVIS) {
-    opts.repo = 'https://' + process.env.GITHUB_NAME + ':' + process.env.GITHUB_PASS + '@' + buildConfig.pkg.repository.url;
+    var parsed = url.parse(buildConfig.pkg.repository.url);
+    parsed.auth = process.env.GITHUB_NAME + ':' + process.env.GITHUB_PASS;
+    opts.repo = url.format(parsed);
   }
 
   ghpages.publish(path.join(__dirname, '.tmp/publish'), opts, cb);
