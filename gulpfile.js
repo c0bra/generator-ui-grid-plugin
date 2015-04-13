@@ -290,6 +290,10 @@ gulp.task('publish', ['pre-publish'], function (cb) {
 
   var opts = {
     tag: argv.tag ? argv.tag : null,
+    user: {
+      name: 'Brian Hann',
+      email: 'c0bra@users.noreply.github.com'
+    }
   };
 
   // Use encrypted environment variables to set the username and pass for pushing gh-pages
