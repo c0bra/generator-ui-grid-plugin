@@ -5,8 +5,8 @@ node_js:
 
 env:
   global:
-    - secure: "nn7s0n4CEqpHaU8mWtBUKyFWUzm+nYcG8aHrzmRK4A8PXC8+azo63vvti7QlRkDxlnS+vkd1SEBBd9YLxCmr8SHiu1b/QTseEWfZa09D1PNQmSX6C/sabAxHL6MXZ/j4ZLtQ53naD4yoNBXRwZ2kphkc09FJed8Ok+m+Hj8/7Ls="
-    - secure: "bzjmmm8WVt6TKNWUTVTy7c32x4fFJ53i7ypi5ucmC3NvXc17/JkacUfMQ76P6drLKgEO6olIyM4U+ZTS4ODiEorDMSvLvIUxaUM4qBS+hHM8S1lN0BZn5neNDumdl7MYYBH1hCNgwxlWdBnSzUkgY8pATSSciZC2anIXp+7Q/1k="
+    - secure: "TmS/FRRiUhCu+E2fjuOSWMMxEmyRP8Ljez1IMbnxDueqIyR23Pb6GjuiJGz/nVtgRNJxwra5Ujm4nZ+5fyAPK4mfUNXUPDPFBWBD1chR46wBAJbPI1HajBAFXIAbF8YEOvXk9NBld4llWdkdonqX0DXvB9S4EBUzaZwGnlx7e+I="
+    - secure: "ev4CzYOBehzpGp6C/W9WencXcLeYUUvm8CbbMFZUMIEu30IxNMrBm96yrUz7hv5agU2FPexH2HjasVoOwxQq/oCY9SUeKL6RVhggRw97WFO+7t3uKgxdY2EhVoiGKIZsbehoS2rE1UzS5tyxc7bpCWo0bjMPacWJ5AuBz5klXeM="
 
 branches:
   only:
