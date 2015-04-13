@@ -8,6 +8,9 @@ branches:
   - master
 
 before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - chmod +x ./travis_build.sh
   - npm install --quiet -g gulp karma bower
   - npm install
   - bower install
