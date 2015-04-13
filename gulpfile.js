@@ -299,7 +299,7 @@ gulp.task('publish', ['pre-publish'], function (cb) {
   // Use encrypted environment variables to set the username and pass for pushing gh-pages
   if (process.env.TRAVIS) {
     var parsed = url.parse(buildConfig.pkg.repository.url);
-    parsed.auth = process.env.GITHUB_NAME + ':' + process.env.GITHUB_PASS;
+    parsed.auth = encodeURIComponent(process.env.GITHUB_NAME) + ':' + encodeURIComponent(process.env.GITHUB_PASS);
     opts.repo = url.format(parsed);
   }
 
