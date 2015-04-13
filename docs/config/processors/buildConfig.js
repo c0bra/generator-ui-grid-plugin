@@ -1,6 +1,6 @@
 'use strict';
 
-var q = require('Q');
+var q = require('q');
 var exec = require('child-proc').exec;
 
 var buildConfig = require('../../../config/build.config');
