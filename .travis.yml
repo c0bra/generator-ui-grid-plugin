@@ -6,7 +6,7 @@ node_js:
 env:
   global:
     - secure: "TmS/FRRiUhCu+E2fjuOSWMMxEmyRP8Ljez1IMbnxDueqIyR23Pb6GjuiJGz/nVtgRNJxwra5Ujm4nZ+5fyAPK4mfUNXUPDPFBWBD1chR46wBAJbPI1HajBAFXIAbF8YEOvXk9NBld4llWdkdonqX0DXvB9S4EBUzaZwGnlx7e+I="
-    - secure: "ZvXrYcgnnv2RA+fbf9l+ab579XEvoghkUvwp80L23BxbbNc9i9WojiWwbNjGwnE0t0Yv8kkhQcE3aha0W0Di6YUXPUdh5geUQmT0d1dFPcd/J1lCRO5MrTbpEkI00LuUdkgQHSctz3dZcwwVpkNsC6+wY8YY/Q1vlRIK4bj+JfY="
+    - secure: "QDSG6xP/C5NpZZTYC3kBDSofYujUOMd1sJTjZNkCtGJ1QX+D8yYGZBpWwz36bX8qZcvAUA9fOfvirzCLCBPYPf9EA+B1f0tz9MBrBmGr59rups3OZdflQMIEFarFi+miaMvG1HF2A+SbnzLv+lKrPhe6Fw0INjJB4H+gUspUM6w="
 
 branches:
   only:
