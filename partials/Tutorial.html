@@ -24,7 +24,7 @@
           name="index.html"
           type="html"
           language="html">
-          <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#13;&#10;  Custom directive output below:&#13;&#10;  &lt;br&gt;&#13;&#10;  &lt;br&gt;&#13;&#10;  &lt;example-plugin-directive class=&quot;test-directive&quot;&gt;Test output&lt;/example-plugin-directive&gt;&#13;&#10;&lt;/div&gt;&#13;</code></pre>
+          <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#10;  Custom directive output below:&#10;  &lt;br&gt;&#10;  &lt;br&gt;&#10;  &lt;example-plugin-directive class=&quot;test-directive&quot;&gt;Test output&lt;/example-plugin-directive&gt;&#10;&lt;/div&gt;</code></pre>
         </div>
       </tab>
     
@@ -33,7 +33,7 @@
           name="app.js"
           language="js"
           type="js">
-          <pre><code>angular.module(&#39;app&#39;, [])&#13;&#10;&#10;.controller(&#39;MainCtrl&#39;, function ($scope) {&#13;&#10;  $scope.out = &#39;Hello World!&#39;;&#13;&#10;&#10;  //$scope.out = ExamplePluginService.uppercase($scope.out);&#13;&#10;});&#13;</code></pre>
+          <pre><code>angular.module(&#39;app&#39;, [])&#10;&#10;.controller(&#39;MainCtrl&#39;, function ($scope) {&#10;  $scope.out = &#39;Hello World!&#39;;&#10;&#10;  //$scope.out = ExamplePluginService.uppercase($scope.out);&#10;});</code></pre>
         </div>
       </tab>
     
@@ -42,7 +42,7 @@
           name="protractor.js"
           type="protractor"
           language="js">
-          <pre><code>describe(&#39;Plugin directive&#39;, function () {&#13;&#10;  it(&#39;works&#39;, function() {&#13;&#10;    expect(true).toBe(true);&#13;&#10;  });&#13;&#10;});&#13;</code></pre>
+          <pre><code>describe(&#39;Plugin directive&#39;, function () {&#10;  it(&#39;works&#39;, function() {&#10;    expect(true).toBe(true);&#10;  });&#10;});</code></pre>
         </div>
       </tab>
     

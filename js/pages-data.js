@@ -33,7 +33,7 @@ angular.module('constants')
         "name": "delayUppercase",
         "path": "api/js/function/delayUppercase",
         "area": "api",
-        "codeName": "delayUppercase",
+        "codeName": "uppercase",
         "module": "js",
         "docType": "function"
       },

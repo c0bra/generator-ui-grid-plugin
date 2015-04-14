@@ -1,9 +1,9 @@
 /*!
  * ui-grid-plugin-skeleton
- * null
+ * https://github.com/c0bra/ui-grid-plugin-skeleton
  * @license MIT
  * v0.0.0
- * 2015-04-12T16:34:53.898Z
+ * 2015-04-14T12:59:37.567Z
  */
 (function () {
 'use strict';
@@ -32,7 +32,7 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
      * @returns {Promise} Promise that is resolved with the input uppercased.
      * @description
      */
-    uppercase: function delayUppercase(input) {
+    uppercase: function uppercase(input) {
       return input.toString().toUpperCase();
     }
   };
