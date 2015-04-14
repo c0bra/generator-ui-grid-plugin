@@ -188,7 +188,7 @@ gulp.task('webdriver_standalone', ['webdriver_update'], function (cb) {
 
   child.stderr.on('data', function(data) {
     var sentinal = 'Started org.openqa.jetty.jetty.Server'
-    if (data.toString().indexOf(sentinal) != -1) {
+    if (data.toString().indexOf(sentinal) !== -1) {
       cb(null, child)
     }
   });
