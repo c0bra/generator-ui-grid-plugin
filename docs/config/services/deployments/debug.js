@@ -20,9 +20,9 @@ module.exports = function debugDeployment() {
       dependencyPath: '../../../'
     },
     scripts: [
-      // '/bower_components/angular/angular.js',
-      // '/bower_components/angular-ui-grid/ui-grid.js',
-      // 'js/' + buildConfig.name + '.js'
+      '/bower_components/angular/angular.js',
+      '/bower_components/angular-ui-grid/ui-grid.js',
+      'js/' + buildConfig.name + '.js'
     ],
     stylesheets: [
       

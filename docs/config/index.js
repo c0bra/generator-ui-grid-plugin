@@ -19,6 +19,7 @@ module.exports = new Package(buildConfig.name, [
 
 .factory(require('./services/deployments/default'))
 .factory(require('./services/deployments/debug'))
+.factory(require('./services/deployments/production'))
 
 .processor(require('./processors/assignAreas'))
 .processor(require('./processors/pagesData'))
@@ -100,10 +101,11 @@ module.exports = new Package(buildConfig.name, [
   });
 })
 
-.config(function(generateExamplesProcessor, generateProtractorTestsProcessor, defaultDeployment, debugDeployment) {
+.config(function(generateExamplesProcessor, generateProtractorTestsProcessor, defaultDeployment, debugDeployment, productionDeployment) {
   var deployments = [
-    // defaultDeployment,
-    debugDeployment
+    defaultDeployment,
+    debugDeployment,
+    productionDeployment
   ];
 
   generateExamplesProcessor.deployments = deployments;

@@ -15,16 +15,14 @@ This module is a skeleton for you to use to create your own UI-Grid plugins, com
       Custom directive output below:
       <br>
       <br>
-      <example-plugin-directive class="test-directive">Test output</example-plugin-directive>
+      <example-plugin-directive class="test-directive">{{ out }}</example-plugin-directive>
     </div>
   </file>
   <file name="app.js">
-    angular.module('app', [])
+    angular.module('app', ['ui.grid.examplePlugin'])
 
     .controller('MainCtrl', function ($scope) {
       $scope.out = 'Hello World!';
-
-      //$scope.out = ExamplePluginService.uppercase($scope.out);
     });
   </file>
   <file name="protractor.js" type="protractor">
