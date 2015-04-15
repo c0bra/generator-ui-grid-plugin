@@ -37,7 +37,7 @@ angular.module('plnkr', ['constants'])
 
         // Build a pretty title for the Plunkr
         var exampleNameParts = manifest.name.split('-');
-        exampleNameParts.unshift('AngularJS');
+        exampleNameParts.unshift(BUILDCONFIG.readableName);
         angular.forEach(exampleNameParts, function(part, index) {
           exampleNameParts[index] = part.charAt(0).toUpperCase() + part.substr(1);
         });
@@ -50,7 +50,7 @@ angular.module('plnkr', ['constants'])
               // The manifests provide the production index file but Plunkr wants
               // a straight index.html
               if (filename === "index-production.html") {
-                filename = "index.html"
+                filename = "index.html";
               }
 
               return {

@@ -1,10 +1,8 @@
 (function(angular) {
   'use strict';
-angular.module('app', [])
+angular.module('app', ['ui.grid.examplePlugin'])
 
 .controller('MainCtrl', function ($scope) {
   $scope.out = 'Hello World!';
-
-  //$scope.out = ExamplePluginService.uppercase($scope.out);
 });
 })(window.angular);

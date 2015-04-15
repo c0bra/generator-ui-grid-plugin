@@ -13,7 +13,7 @@
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path=""
+      path="examples/example-example-name"
       name="example-name"
       module="app">
 
@@ -24,7 +24,7 @@
           name="index.html"
           type="html"
           language="html">
-          <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#10;  Custom directive output below:&#10;  &lt;br&gt;&#10;  &lt;br&gt;&#10;  &lt;example-plugin-directive class=&quot;test-directive&quot;&gt;Test output&lt;/example-plugin-directive&gt;&#10;&lt;/div&gt;</code></pre>
+          <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#10;  Custom directive output below:&#10;  &lt;br&gt;&#10;  &lt;br&gt;&#10;  &lt;example-plugin-directive class=&quot;test-directive&quot;&gt;{{ out }}&lt;/example-plugin-directive&gt;&#10;&lt;/div&gt;</code></pre>
         </div>
       </tab>
     
@@ -33,7 +33,7 @@
           name="app.js"
           language="js"
           type="js">
-          <pre><code>angular.module(&#39;app&#39;, [])&#10;&#10;.controller(&#39;MainCtrl&#39;, function ($scope) {&#10;  $scope.out = &#39;Hello World!&#39;;&#10;&#10;  //$scope.out = ExamplePluginService.uppercase($scope.out);&#10;});</code></pre>
+          <pre><code>angular.module(&#39;app&#39;, [&#39;ui.grid.examplePlugin&#39;])&#10;&#10;.controller(&#39;MainCtrl&#39;, function ($scope) {&#10;  $scope.out = &#39;Hello World!&#39;;&#10;});</code></pre>
         </div>
       </tab>
     
@@ -48,7 +48,7 @@
     
     </tabset>
 
-    <iframe class="runnable-example-frame" src="" name="example-example-name"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example-name/index.html" name="example-example-name"></iframe>
   </div>
 </div>
 
