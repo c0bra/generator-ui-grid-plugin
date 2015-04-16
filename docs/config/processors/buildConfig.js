@@ -20,7 +20,7 @@ module.exports = function buildConfigProcessor(log) {
       items: buildConfig
     });
 
-    return q.all([ getSHA(), getCommitDate() ])
+    return q.all([ getSHA(), getCommitDate(), getCurrentTag(), versionTagExists(buildConfig.version) ])
       .then( function() {
         return docs;
       });
@@ -34,7 +34,7 @@ module.exports = function buildConfigProcessor(log) {
   function getSHA() {
     var deferred = q.defer();
 
-    exec('git rev-parse HEAD', function(error, stdout, stderr) {
+    exec('git rev-parse HEAD', function (error, stdout, stderr) {
       buildConfig.commit = stdout && stdout.toString().trim();
       deferred.resolve(buildConfig.commit);
     });
@@ -50,9 +50,40 @@ module.exports = function buildConfigProcessor(log) {
   function getCommitDate() {
     var deferred = q.defer();
 
-    exec('git show -s --format=%ci HEAD', function(error, stdout, stderr) {
+    exec('git show -s --format=%ci HEAD', function (error, stdout, stderr) {
       buildConfig.date = stdout && stdout.toString().trim();
       deferred.resolve(buildConfig.date);
+    });
+
+    return deferred.promise;
+  }
+
+  /**
+   * Get the current tag, if any
+   */
+  function getCurrentTag() {
+    var deferred = q.defer();
+
+    exec('git tag -l --points-at HEAD', function (error, stdout, stderr) {
+      buildConfig.tag = stdout && stdout.toString().trim();
+      deferred.resolve(buildConfig.tag);
+    });
+
+    return deferred.promise;
+  }
+
+  // Boolean switch for whether a git tag exists for the version in package.json already or not
+  function versionTagExists(tag) {
+    var deferred = q.defer();
+
+    exec('git rev-parse ' + tag, function (error, stdout, stderr) {
+      if (error) {
+        buildConfig.versionTagExists = false;
+      }
+      else {
+        buildConfig.versionTagExists = true;
+      }
+      deferred.resolve(buildConfig.versionTagExists);
     });
 
     return deferred.promise;
