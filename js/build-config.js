@@ -31,6 +31,7 @@ angular.module('constants')
       "gh-pages": "~0.2.0",
       "gulp": "^3.8.11",
       "gulp-autoprefixer": "^2.1.0",
+      "gulp-bump": "~0.3.0",
       "gulp-cached": "^1.0.4",
       "gulp-concat": "^2.5.2",
       "gulp-connect": "^2.2.0",
@@ -76,6 +77,8 @@ angular.module('constants')
   "version": "0.0.0",
   "ngVersion": "1.3.15",
   "repository": "https://github.com/c0bra/ui-grid-plugin-skeleton",
-  "commit": "8802b2dabdeb8fec5ff8a51fd0cae9493ef9e9f6",
-  "date": "2015-04-15 06:23:15 -0500"
+  "versionTagExists": false,
+  "tag": "",
+  "date": "2015-04-16 13:48:56 -0500",
+  "commit": "36afac81d83101b70ce1906b8566af4041fc87fa"
 });
