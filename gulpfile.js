@@ -5,6 +5,8 @@
 var argv = require('yargs')
     .default('port', 4000)
     .default('tag', null)
+    .default('version', null)
+    .default('type', null)
     .argv;
 var child_process = require('child_process');
 var del = require('del');
@@ -260,6 +262,24 @@ gulp.task('build', function (cb) {
   );
 });
 
+gulp.task('bump', function () {
+  if (!argv.version && !argv.type) {
+    $g.util.log($g.util.colors.red('You must supply either a version or bump type with the --version or --type arguments'));
+    return;
+  }
+
+  var opts = {};
+
+  if (argv.version) { opts.version = argv.version; }
+  else if (argv.type) { opts.type = argv.type; }
+
+  return gulp.src([
+    './package.json',
+    './bower.json'
+  ])
+    .pipe($g.bump(opts));
+});
+
 gulp.task('pre-publish', ['build'], function (cb) {
   var pub = merge(
     gulp.src('dist/**', { base: '.' }),
@@ -289,7 +309,8 @@ gulp.task('publish', ['pre-publish'], function (cb) {
   var ghpages = require('gh-pages');
 
   var opts = {
-    tag: argv.tag ? argv.tag : null,
+    // Use the tag argument as a tag, if it's not present use the current package version
+    tag: argv.tag ? argv.tag : buildConfig.pkg.version,
     user: {
       name: 'Brian Hann',
       email: 'emailc0bra@gmail.com'
