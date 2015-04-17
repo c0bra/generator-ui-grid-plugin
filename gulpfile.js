@@ -312,7 +312,11 @@ gulp.task('publish', ['pre-publish'], function (cb) {
 
   var opts = {
     // Use the tag argument as a tag, if it's not present use the current package version
-    tag: argv.tag ? argv.tag : buildConfig.version
+    tag: argv.tag ? argv.tag : buildConfig.version,
+    user: {
+      name: 'Brian Hann',
+      email: 'emailc0bra@gmail.com'
+    }
   };
 
   $g.util.log($g.util.colors.green('Publising version ' + opts.tag));
