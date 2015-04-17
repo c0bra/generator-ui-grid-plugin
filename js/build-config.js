@@ -77,8 +77,8 @@ angular.module('constants')
   "version": "0.0.0",
   "ngVersion": "1.3.15",
   "repository": "https://github.com/c0bra/ui-grid-plugin-skeleton",
-  "commit": "36afac81d83101b70ce1906b8566af4041fc87fa",
   "tag": "",
+  "versionTagExists": true,
   "date": "2015-04-16 13:48:56 -0500",
-  "versionTagExists": true
+  "commit": "36afac81d83101b70ce1906b8566af4041fc87fa"
 });

@@ -3,7 +3,7 @@
  * https://github.com/c0bra/ui-grid-plugin-skeleton
  * @license MIT
  * v0.0.0
- * 2015-04-17T21:10:15.119Z
+ * 2015-04-17T21:12:49.485Z
  */
 (function () {
 'use strict';
