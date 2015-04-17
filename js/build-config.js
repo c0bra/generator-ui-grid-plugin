@@ -10,7 +10,7 @@ angular.module('constants')
 .constant('BUILDCONFIG', {
   "pkg": {
     "name": "ui-grid-plugin-skeleton",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Skeleton project for Angular UI-Grid plugins",
     "repository": {
       "type": "git",
@@ -74,11 +74,11 @@ angular.module('constants')
   "name": "ui-grid-plugin-skeleton",
   "moduleName": "ui.grid.plugin.skeleton",
   "readableName": "UI-Grid Plugin Skeleton",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "ngVersion": "1.3.15",
   "repository": "https://github.com/c0bra/ui-grid-plugin-skeleton",
-  "date": "2015-04-17 16:33:55 -0500",
-  "commit": "c2cbaeec98d0dbd8aca281ed2dec237f6572fa6e",
-  "versionTagExists": false,
-  "tag": ""
+  "tag": "",
+  "date": "2015-04-17 17:04:56 -0500",
+  "commit": "46475f9549aa2792ba15fe0ad4a79985b58036b7",
+  "versionTagExists": false
 });
