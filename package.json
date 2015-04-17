@@ -1,6 +1,6 @@
 {
   "name": "ui-grid-plugin-skeleton",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Skeleton project for Angular UI-Grid plugins",
   "repository": {
     "type": "git",

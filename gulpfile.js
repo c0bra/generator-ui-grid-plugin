@@ -11,6 +11,7 @@ var argv = require('yargs')
 var child_process = require('child_process');
 var del = require('del');
 var Dgeni = require('dgeni');
+var exec = require('child_process').exec;
 var karma = require('karma').server;
 var merge = require('merge-stream');
 var path = require('path');
@@ -277,7 +278,8 @@ gulp.task('bump', function () {
     './package.json',
     './bower.json'
   ])
-    .pipe($g.bump(opts));
+    .pipe($g.bump(opts))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('pre-publish', ['build'], function (cb) {
@@ -310,21 +312,28 @@ gulp.task('publish', ['pre-publish'], function (cb) {
 
   var opts = {
     // Use the tag argument as a tag, if it's not present use the current package version
-    tag: argv.tag ? argv.tag : buildConfig.pkg.version,
-    user: {
-      name: 'Brian Hann',
-      email: 'emailc0bra@gmail.com'
-    }
+    tag: argv.tag ? argv.tag : buildConfig.version
   };
 
-  // Use encrypted environment variables to set the username and pass for pushing gh-pages
-  if (process.env.TRAVIS) {
-    var parsed = url.parse(buildConfig.pkg.repository.url);
-    parsed.auth = encodeURIComponent(process.env.GITHUB_NAME) + ':' + decodeURIComponent(process.env.GITHUB_PASS);
-    opts.repo = url.format(parsed);
-  }
+  $g.util.log($g.util.colors.green('Publising version ' + opts.tag));
 
-  ghpages.publish(path.join(__dirname, '.tmp/publish'), opts, cb);
+  // Check if tag exists
+  exec('git rev-parse ' + opts.tag, function (error, stdout, stderr) {
+    if (!error) {
+      $g.util.log($g.util.colors.red('Tag ' + opts.tag + ' already exists'));
+      return cb(error);
+    }
+    else {
+      // Use encrypted environment variables to set the username and pass for pushing gh-pages
+      if (process.env.TRAVIS) {
+        var parsed = url.parse(buildConfig.pkg.repository.url);
+        parsed.auth = encodeURIComponent(process.env.GITHUB_NAME) + ':' + decodeURIComponent(process.env.GITHUB_PASS);
+        opts.repo = url.format(parsed);
+      }
+
+      ghpages.publish(path.join(__dirname, '.tmp/publish'), opts, cb);
+    }
+  });
 });
 
 gulp.task('default', ['build']);
