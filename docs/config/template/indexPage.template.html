@@ -11,6 +11,35 @@
 
 <!-- <script src="docs.js"></script>
 <script src="docs-demo-scripts.js"></script> -->
+
+<script type="text/javascript">
+  // (function () {
+  //   var baseUrl = window.location.href.replace(window.location.hash, '');
+
+  //   addTag('base', { href: baseUrl });
+
+  //   function addTag(name, attributes, sync) {
+  //     var el = document.createElement(name),
+  //         attrName;
+  //     for (attrName in attributes) {
+  //       el.setAttribute(attrName, attributes[attrName]);
+  //     }
+  //     document.write(outerHTML(el));
+  //   }
+  //   function outerHTML(node){
+  //     // if IE, Chrome take the internal method otherwise build one
+  //     return node.outerHTML || (
+  //       function(n){
+  //           var div = document.createElement('div'), h;
+  //           div.appendChild(n);
+  //           h = div.innerHTML;
+  //           div = null;
+  //           return h;
+  //       })(node);
+  //   }
+  // })();
+</script>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
 
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -30,7 +59,6 @@
 <script src="js/app.js"></script>
 </head>
 <body>
-
   <header>
     <section class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -74,13 +102,13 @@
 
       <!-- Route view -->
       <div class="view col-md-8" ng-view>
-        
+
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    
+
   </footer>
 
   {% if doc.buildconfig.repository %}
