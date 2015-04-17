@@ -12,7 +12,7 @@ var cdnurl = '//rawgit.com/' + repoPart;
 
 // If we don't have a tag for the version in package.json yet, use it in a cdn url as we are going to create the tag
 if (!buildConfig.versionTagExists) {
-  cdnurl.replace('rawgit.com', 'cdn.rawgit.com');
+  cdnurl = cdnurl.replace('rawgit.com', 'cdn.rawgit.com');
   cdnurl += '/' + buildConfig.version;
 }
 
