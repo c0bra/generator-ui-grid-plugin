@@ -22,8 +22,17 @@ This module is a skeleton for you to use to create your own UI-Grid plugins, com
     angular.module('app', ['ui.grid.examplePlugin'])
 
     .controller('MainCtrl', function ($scope) {
-      $scope.out = 'Hello World!';
+      $scope.out = 'Click Me!';
     });
+  </file>
+  <file name="app.css">
+    .click-me {
+      cursor: pointer;
+    }
+
+    .toggled {
+      color: red;
+    }
   </file>
   <file name="protractor.js" type="protractor">
     describe('Plugin directive', function () {

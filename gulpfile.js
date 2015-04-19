@@ -109,6 +109,7 @@ gulp.task('templates', function () {
 // TODO: need progeny() here for after templates change?
 gulp.task('js',  function () {
   var js = gulp.src(config.paths.js)
+    .pipe($g.plumber())
     .pipe($g.cached('js'))
     .pipe($g.jshint())
     // .pipe($g.jshint.reporter('fail'))

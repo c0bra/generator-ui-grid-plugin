@@ -9,37 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/{$ doc.buildConfig.ngVersion $}/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/{$ doc.buildConfig.ngVersion $}/angular-messages.min.js"></script> -->
 
-<!-- <script src="docs.js"></script>
-<script src="docs-demo-scripts.js"></script> -->
-
-<script type="text/javascript">
-  // (function () {
-  //   var baseUrl = window.location.href.replace(window.location.hash, '');
-
-  //   addTag('base', { href: baseUrl });
-
-  //   function addTag(name, attributes, sync) {
-  //     var el = document.createElement(name),
-  //         attrName;
-  //     for (attrName in attributes) {
-  //       el.setAttribute(attrName, attributes[attrName]);
-  //     }
-  //     document.write(outerHTML(el));
-  //   }
-  //   function outerHTML(node){
-  //     // if IE, Chrome take the internal method otherwise build one
-  //     return node.outerHTML || (
-  //       function(n){
-  //           var div = document.createElement('div'), h;
-  //           div.appendChild(n);
-  //           h = div.innerHTML;
-  //           div = null;
-  //           return h;
-  //       })(node);
-  //   }
-  // })();
-</script>
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
 
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -73,7 +42,7 @@
               GitHub
             </a>
           <li>
-        </div>
+        </ul>
       </div>
     </section>
   </header>
@@ -107,25 +76,23 @@
     </div>
   </section>
 
-  <footer class="footer">
+  <!-- <footer class="footer"></footer> -->
 
-  </footer>
-
-  {% if doc.buildconfig.repository %}
-  <a href="{$ doc.buildconfig.repository $}">
+  {% if doc.buildConfig.repository %}
+  <!-- <a href="{$ doc.buildconfig.repository $}">
       <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000"
         src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67"
         alt="Fork me on GitHub"
-        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a> -->
   {% endif %}
 
-  {% if doc.buildConfig.googleAnaltics %}
+  {% if doc.buildConfig.googleAnalytics %}
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', '{$ buildConfig.googleAnaltics $}', 'auto');
+      ga('create', '{$ buildConfig.googleAnalytics $}', 'auto');
       ga('send', 'pageview');
   </script>
   {% endif %}

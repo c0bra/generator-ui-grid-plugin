@@ -12,18 +12,17 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
  * @ngdoc service
  * @name ExamplePluginService
  * @module ui.grid.examplePlugin
- * 
+ *
  * @description Simple example service
  */
-.service('ExamplePluginService', function ($timeout) {
+.service('ExamplePluginService', function () {
   return {
     /**
-     * @ngdoc function
-     * @name delayUppercase
-     * @memberOf ui.grid.examplePlugin:ExamplePluginService
+     * @ngdoc method
+     * @name ExamplePluginService#uppercase
      * @param {String} input String to uppercase
-     * @returns {Promise} Promise that is resolved with the input uppercased.
-     * @description
+     * @returns {String} Uppercased string
+     * @description Simple example function
      */
     uppercase: function uppercase(input) {
       return input.toString().toUpperCase();
@@ -37,11 +36,11 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
  * @module ui.grid.examplePlugin
  * @description test
  */
-.directive('examplePluginDirective', function() {
+.directive('examplePluginDirective', function () {
   return {
     replace: true,
     transclude: true,
-    template: '<div><strong ng-transclude></strong></div>',
+    template: '<div class="click-me"><strong ng-transclude></strong></div>',
     link: function ($scope, $elm, $attrs) {
       $elm.on('click', function () {
         $elm.toggleClass('toggled');

@@ -14,7 +14,7 @@ module.exports = new Package(buildConfig.name, [
 ])
 
 .config(function (log) {
-  log.level = 'info';
+  log.level = 'warn';
 })
 
 .factory(require('./services/deployments/default'))
@@ -27,7 +27,7 @@ module.exports = new Package(buildConfig.name, [
 .processor(require('./processors/buildConfig'))
 
 .config(function (readFilesProcessor, writeFilesProcessor) {
-  readFilesProcessor.basePath = projectPath
+  readFilesProcessor.basePath = projectPath;
 
   readFilesProcessor.sourceFiles = [
     { include: 'src/**/*.js', basePath: 'src' },
@@ -40,10 +40,7 @@ module.exports = new Package(buildConfig.name, [
 .config(function (templateFinder, templateEngine) {
   templateFinder.templateFolders.unshift(path.resolve(packagePath, 'template'));
 
-  // templateFinder.templatePatterns = [
-  //   '${doc.template}',
-  //   'common.template.html'
-  // ];
+  // templateFinder.templatePatterns.unshift('${ doc.area }.template.html');
 })
 
 .config(function (computePathsProcessor, computeIdsProcessor) {
@@ -88,8 +85,7 @@ module.exports = new Package(buildConfig.name, [
     getOutputPath: function(doc) {
       return path.join(
         'partials',
-        path.dirname(doc.fileInfo.relativePath),
-        doc.fileInfo.baseName) + '.html';
+        path.dirname(doc.fileInfo.relativePath), doc.fileInfo.baseName) + '.html';
     }
   });
 

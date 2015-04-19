@@ -10,7 +10,7 @@ env:
 
 branches:
   only:
-  - master
+   - master
 
 before_script:
   - export DISPLAY=:99.0
