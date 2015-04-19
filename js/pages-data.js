@@ -30,14 +30,6 @@ angular.module('constants')
         "docType": "service"
       },
       {
-        "name": "delayUppercase",
-        "path": "api/js/function/delayUppercase",
-        "area": "api",
-        "codeName": "uppercase",
-        "module": "js",
-        "docType": "function"
-      },
-      {
         "name": "exampleDirective",
         "path": "api/ui.grid.examplePlugin/directive/exampleDirective",
         "area": "api",

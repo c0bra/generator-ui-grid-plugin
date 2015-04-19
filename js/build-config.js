@@ -8,9 +8,13 @@ catch (e) {
 
 angular.module('constants')
 .constant('BUILDCONFIG', {
+  "moduleName": "ui.grid.plugin.skeleton",
+  "readableName": "UI-Grid Plugin Skeleton",
+  "ngVersion": "1.3.15",
+  "googleAnalytics": null,
   "pkg": {
     "name": "ui-grid-plugin-skeleton",
-    "version": "0.0.5",
+    "version": "0.1.0",
     "description": "Skeleton project for Angular UI-Grid plugins",
     "repository": {
       "type": "git",
@@ -47,6 +51,7 @@ angular.module('constants')
       "gulp-minify-css": "^1.0.0",
       "gulp-minify-html": "^1.0.1",
       "gulp-order": "^1.1.1",
+      "gulp-plumber": "~1.0.0",
       "gulp-progeny": "0.0.7",
       "gulp-protractor": "^1.0.0",
       "gulp-remember": "^0.3.0",
@@ -72,13 +77,10 @@ angular.module('constants')
     }
   },
   "name": "ui-grid-plugin-skeleton",
-  "moduleName": "ui.grid.plugin.skeleton",
-  "readableName": "UI-Grid Plugin Skeleton",
-  "version": "0.0.5",
-  "ngVersion": "1.3.15",
+  "version": "0.1.0",
   "repository": "https://github.com/c0bra/ui-grid-plugin-skeleton",
+  "versionTagExists": false,
   "tag": "",
-  "date": "2015-04-17 17:04:56 -0500",
-  "commit": "46475f9549aa2792ba15fe0ad4a79985b58036b7",
-  "versionTagExists": false
+  "date": "2015-04-19 08:23:57 -0500",
+  "commit": "f48a004960de9c63a8a7d0731cf6fbc3a70201d3"
 });

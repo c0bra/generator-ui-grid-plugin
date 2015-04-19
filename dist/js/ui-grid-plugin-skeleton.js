@@ -2,8 +2,8 @@
  * ui-grid-plugin-skeleton
  * https://github.com/c0bra/ui-grid-plugin-skeleton
  * @license MIT
- * v0.0.5
- * 2015-04-17T22:07:50.391Z
+ * v0.1.0
+ * 2015-04-19T13:26:21.049Z
  */
 (function () {
 'use strict';
@@ -19,24 +19,23 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
  * @ngdoc service
  * @name ExamplePluginService
  * @module ui.grid.examplePlugin
- * 
+ *
  * @description Simple example service
  */
-.service('ExamplePluginService', ["$timeout", function ($timeout) {
+.service('ExamplePluginService', function () {
   return {
     /**
-     * @ngdoc function
-     * @name delayUppercase
-     * @memberOf ui.grid.examplePlugin:ExamplePluginService
+     * @ngdoc method
+     * @name ExamplePluginService#uppercase
      * @param {String} input String to uppercase
-     * @returns {Promise} Promise that is resolved with the input uppercased.
-     * @description
+     * @returns {String} Uppercased string
+     * @description Simple example function
      */
     uppercase: function uppercase(input) {
       return input.toString().toUpperCase();
     }
   };
-}])
+})
 
 /**
  * @ngdoc directive
@@ -44,11 +43,11 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
  * @module ui.grid.examplePlugin
  * @description test
  */
-.directive('examplePluginDirective', function() {
+.directive('examplePluginDirective', function () {
   return {
     replace: true,
     transclude: true,
-    template: '<div><strong ng-transclude></strong></div>',
+    template: '<div class="click-me"><strong ng-transclude></strong></div>',
     link: function ($scope, $elm, $attrs) {
       $elm.on('click', function () {
         $elm.toggleClass('toggled');

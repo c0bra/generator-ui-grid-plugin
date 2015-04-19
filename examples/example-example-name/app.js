@@ -3,6 +3,6 @@
 angular.module('app', ['ui.grid.examplePlugin'])
 
 .controller('MainCtrl', function ($scope) {
-  $scope.out = 'Hello World!';
+  $scope.out = 'Click Me!';
 });
 })(window.angular);
