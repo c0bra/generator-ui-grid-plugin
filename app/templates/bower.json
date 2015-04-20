@@ -1,5 +1,5 @@
 {
-  "name": "<%= appname %>",
+  "name": "<%= slugName %>",
   "keywords": [
     "ui-grid",
     "plugin"

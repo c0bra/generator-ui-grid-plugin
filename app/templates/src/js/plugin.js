@@ -3,15 +3,15 @@
 
 /**
  * @ngdoc module
- * @name ui.grid.examplePlugin
+ * @name ui.grid.plugin
  * @description Main plugin module
  */
-angular.module('ui.grid.examplePlugin', ['ui.grid'])
+angular.module('ui.grid.plugin', ['ui.grid'])
 
 /**
  * @ngdoc service
  * @name ExamplePluginService
- * @module ui.grid.examplePlugin
+ * @module ui.grid.plugin
  *
  * @description Simple example service
  */
@@ -33,7 +33,7 @@ angular.module('ui.grid.examplePlugin', ['ui.grid'])
 /**
  * @ngdoc directive
  * @name exampleDirective
- * @module ui.grid.examplePlugin
+ * @module ui.grid.plugin
  * @description test
  */
 .directive('examplePluginDirective', function () {

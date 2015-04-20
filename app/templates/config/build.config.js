@@ -4,16 +4,16 @@ var fs = require('fs');
 
 module.exports = {
   // Name that will be used in angular.module
-  moduleName: 'ui.grid.plugin.skeleton',
+  moduleName: '<%= moduleName %>',
 
   // Name that will show up in text
-  readableName: 'UI-Grid Plugin Skeleton',
+  readableName: '<%= readableName %>',
 
   // Angular verison to use
-  ngVersion: '1.3.15',
+  ngVersion: '<%= angularVersion %>',
 
   // Your google analytics id, if you have one and want it on this site
-  googleAnalytics: null,
+  googleAnalytics: '<%= googleAnalytics %>',
 
   pkg: pkg,
   name: pkg.name,
