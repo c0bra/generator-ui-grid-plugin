@@ -1,23 +1,14 @@
 {
-  "name": "ui-grid-plugin-skeleton",
-  "version": "0.1.0",
-  "authors": [
-    "Brian Hann <brian.hann@gmail.com>"
-  ],
-  "description": "Skeleton project for Angular UI-Grid plugins",
+  "name": "<%= appname %>",
   "keywords": [
     "ui-grid",
-    "plugin",
-    "skeleton",
-    "angular"
+    "plugin"
   ],
-  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
   ],
   "private": true,
   "dependencies": {
