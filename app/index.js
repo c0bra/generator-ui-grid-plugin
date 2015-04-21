@@ -122,11 +122,6 @@ module.exports = generators.Base.extend({
         this.destinationPath('.travis.yml')
       );
     }
-
-    /*
-      Other files
-        .travis.yml
-    */
   },
 
   install: function () {

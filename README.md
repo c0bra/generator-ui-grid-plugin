@@ -44,3 +44,32 @@ You can start up a development task like so. It will run on port 4000. If you wa
 # Caveats
 
 * The JSHint and JSCS config follows the same practices that UI-Grid does (or at least UI-Grid tries to). It's kind of strict, so if you want to make modifications feel free.
+
+# Badges
+
+There's a generator for adding badge/shield images to the top of your README.md Just run this and select the options you want (you'll need to have your repository set in package.json):
+
+    yo ui-grid-plugin:badges
+
+## Coveralls
+
+One of the badges is for Coveralls, and you'll need to sign up at http://coveralls.io if you want to use it. It's a great free, automated test coverage tool.
+
+# Publish
+
+In order for Travis to publish your generated content to your gh-pages branch on GitHub, you need to give it a secure token it can use. Travis has a ruby gem for encrypting strings:
+
+    gem install travis
+
+    travis login
+    # enter your login info
+
+    travis encrypt GITHUB_TOKEN=youtokenhere
+
+It will print out the encrypted string. It's important to make sure you use `GITHUB_TOKEN` as the name and that you're in your project folder and have
+
+You can run this generator to add it:
+
+    yo ui-grid-plugin:travis
+
+It will prompt you for the encrypted string, and will store it in your `.travis.yml` file. Be sure to paste *just* the encrypted string and not the ` - secure: ` prefix.

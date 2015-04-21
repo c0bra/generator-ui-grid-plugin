@@ -86,7 +86,14 @@ module.exports = generators.Base.extend({
     var self = this;
 
     // Update README.md
-    var readmePath = path.join(__dirname, '..', 'README.md');
+    var readmePath = this.destinationPath('README.md');
+
+    if (!fs.existsSync(readmePath)) {
+      this.log.error('You don\'t have a README.md file in your project directory');
+      this.env.error();
+      return;
+    }
+
     var text = fs.readFileSync(readmePath, 'utf-8');
 
     // Compose the template
