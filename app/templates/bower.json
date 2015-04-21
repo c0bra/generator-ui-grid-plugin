@@ -9,7 +9,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
+    "test"
   ],
   "private": true,
   "dependencies": {

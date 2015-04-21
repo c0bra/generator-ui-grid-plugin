@@ -125,8 +125,7 @@ module.exports = generators.Base.extend({
   },
 
   install: function () {
-    // TODO: turn back on
-    // this.installDependencies();
+    this.installDependencies();
   }
 });
 

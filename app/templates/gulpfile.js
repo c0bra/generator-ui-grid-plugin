@@ -23,7 +23,6 @@ var gulp = require('gulp');
 var $g = require('gulp-load-plugins')();
 
 /** Local dependencies */
-require('./lib/gulp');
 var buildConfig = require('./config/build.config.js');
 function noop() {}
 

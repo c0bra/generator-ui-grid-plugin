@@ -9,9 +9,6 @@ module.exports = {
   // Name that will show up in text
   readableName: '<%= readableName %>',
 
-  // Angular verison to use
-  ngVersion: '<%= angularVersion %>',
-
   // Your google analytics id, if you have one and want it on this site
   googleAnalytics: '<%= googleAnalytics %>',
 

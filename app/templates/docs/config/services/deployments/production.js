@@ -4,7 +4,10 @@ var buildConfig = require('../../../../config/build.config');
 
 // Parse repo name from url
 // https://github.com/c0bra/ui-grid-plugin-skeleton.git
-var repoPart = buildConfig.repository.match(/github.com\/(.+?)$/)[1];
+var repoPart = '';
+if (buildConfig.repository) {
+  repoPart = buildConfig.repository.match(/github.com\/(.+?)$/)[1];
+}
 // c0bra/ui-grid-plugin-skeleton
 
 // https://cdn.rawgit.com/c0bra/ui-grid-plugin-skeleton/0.0.1/dist/js/ui-grid-plugin-skeleton.js

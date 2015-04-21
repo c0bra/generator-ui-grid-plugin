@@ -6,7 +6,7 @@
  * @name ui.grid.plugin
  * @description Main plugin module
  */
-angular.module('ui.grid.plugin', ['ui.grid'])
+angular.module('<%= moduleName %>', ['ui.grid'])
 
 /**
  * @ngdoc service

@@ -2,7 +2,7 @@
 @name Start
 @description
 
-# UI-Grid Plugin Skeleton
+# <%= readableName %>
 
 This module is a skeleton for you to use to create your own UI-Grid plugins, complete with unit tests, automatic documentation generation, and a build process.
 
@@ -19,7 +19,7 @@ This module is a skeleton for you to use to create your own UI-Grid plugins, com
     </div>
   </file>
   <file name="app.js">
-    angular.module('app', ['ui.grid.examplePlugin'])
+    angular.module('app', ['<%= moduleName %>'])
 
     .controller('MainCtrl', function ($scope) {
       $scope.out = 'Click Me!';
