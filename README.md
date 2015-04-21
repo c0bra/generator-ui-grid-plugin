@@ -1,6 +1,6 @@
 # UI-Grid Plugin Generator
 
-<!-- [![Travis](https://img.shields.io/travis/c0bra/ui-grid-plugin-skeleton.svg)](https://travis-ci.org/c0bra/ui-grid-plugin-skeleton) [![devDependencies](https://img.shields.io/david/dev/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://david-dm.org/c0bra/ui-grid-plugin-skeleton#info=devDependencies) [![Coveralls](https://img.shields.io/coveralls/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://coveralls.io/r/c0bra/ui-grid-plugin-skeleton) -->
+<!-- [![Travis](https://img.shields.io/travis/c0bra/generator-ui-grid-plugin.svg)](https://travis-ci.org/c0bra/generator-ui-grid-plugin) [![devDependencies](https://img.shields.io/david/dev/c0bra/generator-ui-grid-plugin.svg?style=flat)](https://david-dm.org/c0bra/ui-grid-plugin-skeleton#info=devDependencies) [![Coveralls](https://img.shields.io/coveralls/c0bra/generator-ui-grid-plugin.svg?style=flat)](https://coveralls.io/r/c0bra/generator-ui-grid-plugin) -->
 
 This repo is a Yeoman generator for [UI-Grid](http://ui-grid.info) plugins.
 
@@ -55,7 +55,27 @@ There's a generator for adding badge/shield images to the top of your README.md 
 
 One of the badges is for Coveralls, and you'll need to sign up at http://coveralls.io if you want to use it. It's a great free, automated test coverage tool.
 
-# Publish
+# Development
+
+## Protractor
+
+**Note:** Protractor tests do not work, currently. They throw a "window is not defined" error, which isn't documented well anywhere that I can find.
+
+## Publish
+
+The `publish` task takes automatically generated docs and dist files and push them to the gh-pages branch.
+
+    gulp publish --tag v0.0.1
+
+Travis will also publish to gh-pages. You will need to set the version in `bower.json` and `package.json`. A gulp-bump task is included to make it easier. Here's some examples:
+
+    gulp bump --version 1.0.1
+    gulp bump --type minor
+    gulp bump --type patch
+
+Commit and then push to GitHub. Travis will pick up the commit, create a tag for the new version, and push the updates to you gh-pages branch.
+
+## Travis
 
 In order for Travis to publish your generated content to your gh-pages branch on GitHub, you need to give it a secure token it can use. Travis has a ruby gem for encrypting strings:
 
