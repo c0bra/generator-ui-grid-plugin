@@ -1,10 +1,10 @@
 # UI-Grid Plugin Generator
 
-![Screenshot](http://brianhann.com/wp-content/uploads/2015/04/ui-grid-plugin-generator.png)
-
 <!-- [![Travis](https://img.shields.io/travis/c0bra/generator-ui-grid-plugin.svg)](https://travis-ci.org/c0bra/generator-ui-grid-plugin) [![devDependencies](https://img.shields.io/david/dev/c0bra/generator-ui-grid-plugin.svg?style=flat)](https://david-dm.org/c0bra/ui-grid-plugin-skeleton#info=devDependencies) [![Coveralls](https://img.shields.io/coveralls/c0bra/generator-ui-grid-plugin.svg?style=flat)](https://coveralls.io/r/c0bra/generator-ui-grid-plugin) -->
 
 This repo is a Yeoman generator for [UI-Grid](http://ui-grid.info) plugins.
+
+![Screenshot](http://brianhann.com/wp-content/uploads/2015/04/ui-grid-plugin-generator.png)
 
 # What You Get
 
