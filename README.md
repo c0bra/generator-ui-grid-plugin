@@ -1,4 +1,3 @@
-
 # UI-Grid Plugin Skeleton
 
 [![Travis](https://img.shields.io/travis/c0bra/ui-grid-plugin-skeleton.svg)](https://travis-ci.org/c0bra/ui-grid-plugin-skeleton) [![devDependencies](https://img.shields.io/david/dev/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://david-dm.org/c0bra/ui-grid-plugin-skeleton#info=devDependencies) [![Coveralls](https://img.shields.io/coveralls/c0bra/ui-grid-plugin-skeleton.svg?style=flat)](https://coveralls.io/r/c0bra/ui-grid-plugin-skeleton)
@@ -16,74 +15,32 @@ This repo is a starter template for [UI-Grid](http://ui-grid.info) plugins.
 
 # Get Started
 
-## Clone the Skeleton
+Install yeoman if you don't already have it, and the plugin generator:
 
-Clone the project locally
+    npm install -g yeoman generator-ui-grid-plugin
 
-    git clone https://github.com/c0bra/ui-grid-plugin-skeleton.git my-plugin
+Create your plugin folder and bootstrap the plugin
 
-Update origin git remote url
+    mkdir my-plugin
+    cd my-plugin
+    yo ui-grid-plugin
 
-    git remote set-url origin https://github.com/your-username/your-plugin.git
+Follow the prompts. The generator will ask you for your plugin's name, its description, and blah. Wait for all the dependencies to be installed, then you can get started.
 
-## Install Dependencies
-
-    npm install -g gulp bower
-    npm install
-    bower install
-
-## Configuration
-
-1. Update info in **package.json**: name, version, description, repository.
-2. Do the same in **bower.json**
-3. Update config in `config\build.config.js`: the module name, readable name, and alter whatever angular version you want to use.
-
-## Docs
-
-There is a single Tutorial file in `docs/content`. Change its contents to suit your plugin as a landing page.
-
-[TODO: Add notes on where dgeni templates are and updating them (variables, etc)]
-
-## Set up Bower and Travis
-
-[TODO]
-
-# Development
-
-Automatically rebuilds js, css, and docs files. Runs a connect server on port 4000
+# Run it!
+    
+You can start up a development task like so. It will run on port 4000. If you want another port there's a switch for that.
 
     gulp watch
+    gulp watch --port 9999
 
-    # Or your own port:
-    gulp watch --port 3000
+# Writing Your Plugin
 
-## Protractor
+* All the .js files in src/ will be concatenated together and ngAnnotated.
+* Tests in test/ will be run with karma.
+* You can add tutorials by putting .md files in `docs/content/`. They use markdown and @ngdoc formatting.
+* You can add whatever other dependencies you need, from npm or bower.
 
-**Note:** Protractor tests do not work, currently. They throw a "window is not defined" error, which isn't documented well anywhere that I can find.
+# Caveats
 
-
-# Deployment
-
-The `publish` task takes automatically generated docs and dist files and push them to the gh-pages branch.
-
-    gulp publish --tag v0.0.1
-
-## Travis
-
-1. Encrypt your github credentials: http://docs.travis-ci.com/user/environment-variables/#Secure-Variables
-
-    gem install travis
-    travis encrypt GITHUB_NAME=yourusername
-    travis encrypt GITHUB_PASS=yourpassword
-
-Add the output to your env vars, it will look like this:
-
-    env:
-      global:
-      - secure: "fa5fArbwOxcpbv1uLZnIdjfkBEw/k97qrwya+EoFPSwpnoyS4tv/J27fgDdQxp2S83ge7OafHccJkgPDZYrCgOqqbSiVFOaSHnX8eyWkC+k3MqAY5s2rfjdFE/NS3sA3yRV+AEw8xDJ4xFZhJXmUmb1lpuK3+VYAn5ElEtKLGLU="
-      - secure: "EKFllxWbaNO41LKRUaaPG+wn+37OLGJ9yAUx4F4agnnM8c8OALzGE34xbzKn5qoza/JvmobrVUhzKmp0/HiuwKjOX0NfJAKp2mIeMy5G64dhaEGFPeeviIzOCJ2DTR/IIEhACidQjquFy+WExtDCbt8Xzgq+38lcKytuE4GEIZM="
-
-## Bower
-
-Register your module on bower [TODO: Explanation].
-
+* The JSHint and JSCS config follows the same practices that UI-Grid does (or at least UI-Grid tries to). It's kind of strict, so if you want to make modifications feel free.

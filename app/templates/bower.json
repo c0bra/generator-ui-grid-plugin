@@ -1,5 +1,6 @@
 {
   "name": "<%= slugName %>",
+  "description": "<%= description %>",
   "keywords": [
     "ui-grid",
     "plugin"

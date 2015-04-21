@@ -5,8 +5,7 @@ node_js:
 
 env:
   global:
-    - secure: "TmS/FRRiUhCu+E2fjuOSWMMxEmyRP8Ljez1IMbnxDueqIyR23Pb6GjuiJGz/nVtgRNJxwra5Ujm4nZ+5fyAPK4mfUNXUPDPFBWBD1chR46wBAJbPI1HajBAFXIAbF8YEOvXk9NBld4llWdkdonqX0DXvB9S4EBUzaZwGnlx7e+I="
-    - secure: "GxWC6ATnNA4HUl4Di6+aRSxfj/jV0HPqNbqD5XEipNBIaXub+NXUlKaCFHhtrRKMIgnv5TMJPKu9K6rr0MnHfvongg/Dh1AK8X2qcztBh3Tot3Ke6Eq75GA1UoQ4yfJ1CBMKmLCiXndolNC4lcVlBB55XhGPysNp+IbBnVV+sp8="
+    <% if githubToken { %>- secure: "<%= githubToken %>"<% } %>
 
 branches:
   only:

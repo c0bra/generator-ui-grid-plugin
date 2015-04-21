@@ -1,7 +1,9 @@
 'use strict';
 
+var chalk = require('chalk');
 var _s = require('underscore.string');
 var generators = require('yeoman-generator');
+var yosay = require('yosay');
 
 module.exports = generators.Base.extend({
 
@@ -12,19 +14,20 @@ module.exports = generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
+    this.log(yosay('Create your own ' + chalk.green('UI-Grid Plugin') + '!'));
+
     this.prompt(
       [
         {
           type    : 'input',
           name    : 'name',
           message : 'Your plugin\'s name (e.g. "UI-Grid XML Importer"):',
-          default : _s.titleize(this.appname) // Default to current folder name
+          default : gridNamize(this.appname) // Default to current folder name
         },
         {
           type: 'input',
-          name: 'angularVersion',
-          message: 'Angular Version',
-          default: '1.3.15'
+          name: 'description',
+          message: 'Description of your plugin'
         },
         {
           type: 'input',
@@ -38,14 +41,10 @@ module.exports = generators.Base.extend({
       /*
         Prompts:
 
-          angular module name
-          readable name
+          plugin name
           description
-          author's name
-          angular version
-          GA key
-          github username
-          github password
+          author's name?
+          GA key (optional)
       */
 
       function (answers) {
@@ -55,7 +54,7 @@ module.exports = generators.Base.extend({
         this.readableName = answers.name;
         this.slugName = _s.slugify(answers.name);
         this.moduleName = this.slugName.replace(/\-/g, '.');
-        this.angularVersion = answers.angularVersion;
+        this.description = answers.description;
         this.googleAnalytics = answers.googleAnalytics;
 
         done();
@@ -102,22 +101,43 @@ module.exports = generators.Base.extend({
       this.directory('docs', 'docs');
       this.directory('src', 'src');
       this.directory('test', 'test');
+    },
+
+    readme: function () {
+      this.fs.copyTpl(
+        this.templatePath('README.md'),
+        this.destinationPath('README.md'),
+        this
+      );
+    },
+
+    travis: function () {
+      this.fs.copy(
+        this.templatePath('travis_build.sh'),
+        this.destinationPath('travis_build.sh')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('.travis.yml'),
+        this.destinationPath('.travis.yml')
+      );
     }
 
     /*
       Other files
-        README.md
-        LICENSE (?)
         .travis.yml
-        travis_build.sh
-        build.config.js
-
-        test/main.js <-- main test file, needs module name templatized in
-        docs/content/Tutorial.md <-- needs readable name
     */
   },
 
   install: function () {
+    // TODO: turn back on
     // this.installDependencies();
   }
 });
+
+// Turn any form of ui-grid, ui.grid, uigrid, UI Grid, etc., into "UI-Grid"
+function gridNamize(input) {
+  var title = _s.titleize(input);
+
+  return title.replace(/ui.?grid/i, 'UI-Grid');
+}

@@ -16,11 +16,16 @@
     "src",
     "test"
   ],
-  "keywords": ["yeoman-generator"],
+  "keywords": [
+    "yeoman-generator"
+  ],
   "author": "Brian Hann",
   "license": "MIT",
   "dependencies": {
     "yeoman-generator": "^0.19.2",
-    "underscore.string": "^3.0.3"
+    "underscore.string": "^3.0.3",
+    "yosay": "^1.0.3",
+    "chalk": "^1.0.0",
+    "lodash": "^3.7.0"
   }
 }

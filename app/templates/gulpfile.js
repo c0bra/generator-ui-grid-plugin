@@ -329,10 +329,18 @@ gulp.task('publish', ['pre-publish'], function (cb) {
       return cb(error);
     }
     else {
-      // Use encrypted environment variables to set the username and pass for pushing gh-pages
+      // Use encrypted environment variable to set github token
       if (process.env.TRAVIS) {
+        // Make sure token environment variables exists
+        if (!process.env.GITHUB_TOKEN) {
+          var err = 'No github token for pushing to gh-pages';
+           $g.util.log($g.util.colors.red(err));
+           return cb(err);
+        }
+
         var parsed = url.parse(buildConfig.pkg.repository.url);
-        parsed.auth = encodeURIComponent(process.env.GITHUB_NAME) + ':' + decodeURIComponent(process.env.GITHUB_PASS);
+        parsed.auth = encodeURIComponent(process.env.GITHUB_TOKEN);
+
         opts.repo = url.format(parsed);
       }
 
