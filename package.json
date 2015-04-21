@@ -1,10 +1,10 @@
 {
   "name": "generator-ui-grid-plugin",
   "version": "0.1.0",
-  "description": "Skeleton project for Angular UI-Grid plugins",
+  "description": "Yeoman generator for Angular UI-Grid plugins",
   "repository": {
     "type": "git",
-    "url": "https://github.com/c0bra/ui-grid-plugin-skeleton.git"
+    "url": "https://github.com/c0bra/generatior-ui-grid-plugin.git"
   },
   "scripts": {
     "test": "gulp test"
@@ -22,11 +22,11 @@
   "author": "Brian Hann",
   "license": "MIT",
   "dependencies": {
-    "yeoman-generator": "^0.19.2",
-    "underscore.string": "^3.0.3",
-    "yosay": "^1.0.3",
     "chalk": "^1.0.0",
     "lodash": "^3.7.0",
-    "yamljs": "^0.2.1"
+    "underscore.string": "^3.0.3",
+    "yamljs": "^0.2.1",
+    "yeoman-generator": "^0.19.2",
+    "yosay": "^1.0.3"
   }
 }
