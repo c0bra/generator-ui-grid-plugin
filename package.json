@@ -1,13 +1,15 @@
 {
   "name": "generator-ui-grid-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Yeoman generator for Angular UI-Grid plugins",
   "repository": {
     "type": "git",
     "url": "https://github.com/c0bra/generator-ui-grid-plugin.git"
   },
   "files": [
-    "app"
+    "app",
+    "badges",
+    "travis"
   ],
   "keywords": [
     "yeoman-generator",
