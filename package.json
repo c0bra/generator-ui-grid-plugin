@@ -6,18 +6,13 @@
     "type": "git",
     "url": "https://github.com/c0bra/generator-ui-grid-plugin.git"
   },
-  "scripts": {
-    "test": "gulp test"
-  },
   "files": [
-    "app",
-    "config",
-    "docs",
-    "src",
-    "test"
+    "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "ui-grid",
+    "angular"
   ],
   "author": "Brian Hann",
   "license": "MIT",
