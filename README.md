@@ -77,7 +77,11 @@ Commit and then push to GitHub. Travis will pick up the commit, create a tag for
 
 ## Travis
 
-In order for Travis to publish your generated content to your gh-pages branch on GitHub, you need to give it a secure token it can use. Travis has a ruby gem for encrypting strings:
+In order for Travis to publish your generated content to your gh-pages branch on GitHub, you need to give it a secure token it can use. First you'll need to make sure you've set up your GitHub repo if you haven't already:
+
+    git remote add origin https://github.com/yourname/your-repo.git
+
+Then for encrypting your secure token Travis has a ruby gem that can do it:
 
     gem install travis
 
@@ -86,10 +90,10 @@ In order for Travis to publish your generated content to your gh-pages branch on
 
     travis encrypt GITHUB_TOKEN=youtokenhere
 
-It will print out the encrypted string. It's important to make sure you use `GITHUB_TOKEN` as the name and that you're in your project folder and have
+It will print out the encrypted string. It's important to make sure you use `GITHUB_TOKEN` as the name and that you're in your project folder.
 
 You can run this generator to add it:
 
     yo ui-grid-plugin:travis
 
-It will prompt you for the encrypted string, and will store it in your `.travis.yml` file. Be sure to paste *just* the encrypted string and not the ` - secure: ` prefix.
+It will prompt you for the encrypted string, and will store it in your `.travis.yml` file. Be sure to paste *just* the encrypted string and not the `secure: ` prefix or the double quotes around the string.
