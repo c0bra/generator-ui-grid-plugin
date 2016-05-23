@@ -19,7 +19,7 @@ This repo is a Yeoman generator for [UI-Grid](http://ui-grid.info) plugins.
 
 Install yeoman if you don't already have it, and the plugin generator:
 
-    npm install -g yeoman generator-ui-grid-plugin
+    npm install -g yo generator-ui-grid-plugin
 
 Create your plugin folder and bootstrap the plugin
 
